@@ -43,5 +43,3 @@ CREATE TABLE "stats" (
     "blocks" INTEGER  UNIQUE NOT NULL,
     "steals" INTEGER  UNIQUE NOT NULL
 );
-
-
