@@ -9,7 +9,7 @@ CREATE TABLE "user" (
     "password" VARCHAR (1000) NOT NULL
 );
 
-CREATE TABLE "name" (
+CREATE TABLE "playerName" (
     "id" SERIAL PRIMARY KEY,
     "player_name" VARCHAR (80) UNIQUE NOT NULL,
     "team_name" VARCHAR (1000) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE "game" (
 
 CREATE TABLE "stats" (
     "id" SERIAL PRIMARY KEY,
-    "name_id" INT REFERENCES "name" NOT NULL,
+    "playerName_id" INT REFERENCES "playerName" NOT NULL,
     "game_id" INT REFERENCES "game" NOT NULL,
     "three_made" INTEGER UNIQUE NOT NULL,
     "three_missed" INTEGER  NOT NULL,
