@@ -12,12 +12,13 @@ function UserPage() {
   //setting local state for team and player
   const [teamNameInput, setTeamNameInput] = useState('');
   const [playerNameInput, setPlayerNameInput] = useState('');
+
+  const playerReducer = useSelector((store) => store.playerReducer)
   //This is adding my players names and team names to my DB using saga.
-  
   const onPlayerAdd = (e) => {
     e.preventDefault();
     dispatch({
-      type: 'SAGA/ADD_PLAYER',
+      type: 'SAGA_ADD_PLAYER',
       payload: {
         teamName: teamNameInput,
         playerName: playerNameInput
@@ -41,6 +42,11 @@ function UserPage() {
         <button onClick={onPlayerAdd}>Add Team/Player</button>
     </div>
     <div>
+      <ul>
+          {playerReducer.map((player) => {
+            return <li key={player.id}> {player.team_name} {player.player_name} </li>
+        })}
+      </ul>
       <LogOutButton className="btn" />
     </div>
     </>

@@ -4,6 +4,18 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     // GET route code here
+    const sqlText = `
+    SELECT * FROM "playerName"
+    WHERE "username_id"=$1;
+    `;
+    const sqlValues = [req.user.id]
+    pool.query (sqlText, sqlValues)
+    .then((dbRes)=>{
+        res.send(dbRes.rows)
+    })
+    .catch((dbErr)=>{
+        res.sendStatus(500)
+    })
 });
 
 /**

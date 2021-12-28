@@ -38,7 +38,7 @@ function* addNewPlayer(action){
 
 function* addPlayerSaga() {
     yield takeLatest('SAGA_FETCH_PLAYERS', fetchPlayers)
-    yield takeLatest('SAGA/ADD_PLAYER', addNewPlayer);
+    yield takeLatest('SAGA_ADD_PLAYER', addNewPlayer);
 }
 
 export default addPlayerSaga ;
