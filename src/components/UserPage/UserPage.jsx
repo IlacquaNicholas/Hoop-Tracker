@@ -12,8 +12,18 @@ function UserPage() {
   //setting local state for team and player
   const [teamNameInput, setTeamNameInput] = useState('');
   const [playerNameInput, setPlayerNameInput] = useState('');
+  //This is adding my players names and team names to my DB using saga.
   
-
+  const onPlayerAdd = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'SAGA/ADD_PLAYER',
+      payload: {
+        teamName: teamNameInput,
+        playerName: playerNameInput
+      }
+    })
+  }
 
 
 
@@ -28,7 +38,7 @@ function UserPage() {
         value={teamNameInput} onChange={(event) => setTeamNameInput(event.target.value)} />
       <input type='text' placeholder='Add Player Name'
         value={playerNameInput} onChange={(event) => setPlayerNameInput(event.target.value)} />
-        <button>Add Team/Player</button>
+        <button onClick={onPlayerAdd}>Add Team/Player</button>
     </div>
     <div>
       <LogOutButton className="btn" />
