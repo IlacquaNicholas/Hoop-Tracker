@@ -26,6 +26,14 @@ function UserPage() {
     })
   }
 
+  const deletePlayer = (player_id) => {
+    console.log(player_id);
+    dispatch({
+      type: 'SAGA_DELETE_PLAYER',
+      payload: player_id
+    })
+  }
+
 
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -42,9 +50,10 @@ function UserPage() {
         <button onClick={onPlayerAdd}>Add Team/Player</button>
     </div>
     <div>
+      <p>List of players</p>
       <ul>
           {playerReducer.map((player) => {
-            return <li key={player.id}> {player.team_name} {player.player_name} </li>
+            return <li key={player.id}> {player.team_name} {player.player_name} <button onClick={() => deletePlayer(player.id)}>Delete</button></li>
         })}
       </ul>
       <LogOutButton className="btn" />

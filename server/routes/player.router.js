@@ -2,6 +2,8 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+//This router is being used on the UserPage.jsx to add a team name and player name. 
+
 router.get('/', (req, res) => {
     // GET route code here
     const sqlText = `
@@ -44,6 +46,27 @@ router.post('/', (req, res) => {
     })
     
 });
+/**
+ * Delete an item if it's something the logged in user added
+ */
+router.delete('/:id', (req,res)=>{
+    const playerDelete = req.params.id;
+    console.log('In DELETE req.params.id:', req.params.id);
+    const sqlText = `
+    DELETE FROM "playerName"
+    WHERE "id"=$1;
+    `;
+    const sqlValues = [playerDelete]
+    pool.query(sqlText, sqlValues)
+    .then ((dbRes)=>{
+        res.sendStatus(200)
+    })
+    .catch((dbErr)=>{
+        res.sendStatus(500)
+        console.log('players DELETE dbErr', dbErr);
+    })
+})
+
 
 
 module.exports = router;
