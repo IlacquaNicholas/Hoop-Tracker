@@ -1,5 +1,4 @@
 import React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 
 
 // This is one of our simplest components
@@ -9,29 +8,36 @@ import { DataGrid } from '@mui/x-data-grid';
 
 function InfoPage() {
 
-  const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'threeMade', headerName: '3pt Made', width: 130 },
-    { field: 'threeMissed', headerName: '3pt Missed', width: 130 },
-  
-  ];
-
-  const rows = [
-    { id: 1, firstName: 'Nick', threeMade: 3, threeMissed: 4},
-    { id: 2, firstName: 'Jared', threeMade: 3, threeMissed:5 },
-    { id: 3, firstName: 'Mike', threeMade: 3, threeMissed: 5 },
-  ];
-
     return (
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Players</th>
+              <th>3pt Made</th>
+              <th>3pt Missed</th>
+              <th>2pt Made</th>
+              <th>2pt Missed</th>
+              <th>Total Pts</th>
+              <th>Reb</th>
+              <th>Ast</th>
+              <th>Blks</th>
+              <th>Stl</th>
+            </tr>
+          </thead>
+          <tbody>
+            <td>Players</td>
+            <td><button>Made</button></td>
+            <td><button>Missed</button></td>
+            <td><button>Made</button></td>
+            <td><button>Missed</button></td>
+            <td>PTS</td>
+            <td><button>Add</button></td>
+            <td><button>Add</button></td>
+            <td><button>Add</button></td>
+            <td><button>Add</button></td>
+          </tbody>
+        </table>
       </div>
   );
 }

@@ -46,8 +46,6 @@ function* deletePlayer(action){
     };
 }
 
-
-
 function* addPlayerSaga() {
     yield takeLatest('SAGA_FETCH_PLAYERS', fetchPlayers)
     yield takeLatest('SAGA_ADD_PLAYER', addNewPlayer);
