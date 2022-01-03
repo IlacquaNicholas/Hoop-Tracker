@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import DatePage from '../DatePage/DatePage';
 
 
 
@@ -41,7 +42,7 @@ function GetReadyForGame() {
 
     return(
         <div>
-            <h1>Lets Ball Up!</h1>
+            <h1>Lets Get Ready for the Game!</h1>
             <select value={courtId} onChange={chooseCourt}>
                 <option disabled value='0'>Select Court</option>
                 {courtReducer.map((court) => {
@@ -54,6 +55,7 @@ function GetReadyForGame() {
                     return <option key={player.id} value={player.id}>{player.team_name}</option>
                 })}
             </select>
+            <DatePage/>
             <div>
                 <button>Ready for the Game</button>
             </div>
