@@ -31,6 +31,9 @@ function Nav() {
             <Link className="navLink" to="/info">
               Info Page
             </Link>
+            <Link className="navLink" to="/getReady">
+              Get Ready for a Game
+            </Link>
 
             <LogOutButton className="navLink" />
           </>

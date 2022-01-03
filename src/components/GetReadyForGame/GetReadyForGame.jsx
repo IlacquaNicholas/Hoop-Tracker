@@ -1,0 +1,40 @@
+import React, { useState, useEffect } from 'react';
+import LogOutButton from '../LogOutButton/LogOutButton';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+
+function GetReadyForGame() {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    //setting local state
+    const [courtId, setCourtID] = useState(0);
+
+    //grabbing the Court reducer
+    const courtReducer = useSelector ((store)=> store.courtReducer)
+
+    useEffect (()=>{
+        //Need to Get Courts and put it here
+        dispatch ({
+            type: 'SAGA_FETCH_COURTS'
+        })
+    }, [])
+    function chooseCourt(event) {
+        event.preventDefault();
+        setCourtID(event.target.value);
+    };
+
+    return(
+        <div>
+            <h1>Lets Ball Up!</h1>
+            <select value={courtId} onChange={chooseCourt}>
+                <option disabled value='0'>Select Court</option>
+                {courtReducer.map((court) => {
+                    return <option key={court.id} value={court.id}>{court.name}</option>
+                })}
+                </select>
+        </div>
+    )
+}
+
+export default GetReadyForGame;
