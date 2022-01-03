@@ -17,6 +17,7 @@ function* fetchCourts(){
     }
 }
 
+
 function* getCourtSaga() {
     yield takeLatest('SAGA_FETCH_COURTS', fetchCourts)
 
