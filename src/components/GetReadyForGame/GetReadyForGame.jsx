@@ -40,6 +40,17 @@ function GetReadyForGame() {
         setPlayerId(event.target.value);
     };
 
+    const handleReadyForGame =()=>{
+        dispatch({
+            type: 'SAGA_READY_FOR_GAME',
+            payload: {
+                name: courtId, 
+                team_name:playerId
+            }
+        })
+        history.push('/info')
+    }
+
     return(
         <div>
             <h1>Lets Get Ready for the Game!</h1>
@@ -57,7 +68,7 @@ function GetReadyForGame() {
             </select>
             <DatePage/>
             <div>
-                <button>Ready for the Game</button>
+                <button onClick={handleReadyForGame}>Ready for the Game</button>
             </div>
         </div>
     )

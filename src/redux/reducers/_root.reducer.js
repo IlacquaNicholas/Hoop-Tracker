@@ -4,6 +4,7 @@ import user from './user.reducer';
 import playerReducer from './player.reducer';
 import statsReducer from './stats.reducer';
 import courtReducer from './court.reducer';
+import gameReducer from './game.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   playerReducer, // This will hold my players and team names
   statsReducer, // This will hold all the stats being taken
-  courtReducer //This will hold the courts being played at
+  courtReducer, //This will hold the courts being played at
+  gameReducer //This is to keep all the info needed to start a game 
 });
 
 export default rootReducer;

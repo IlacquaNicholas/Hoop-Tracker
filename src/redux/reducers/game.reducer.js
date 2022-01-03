@@ -1,12 +1,10 @@
-const courtReducer = (state = [], action) => {
+const gameReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_COURT':
+        case 'SET_GAME':
             return action.payload;
         default:
             return state;
     }
 }
 
-
-
-export default courtReducer;
+export default gameReducer;
