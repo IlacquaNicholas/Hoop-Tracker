@@ -19,15 +19,16 @@ router.get ('/', (req,res)=>{
         res.sendStatus(500)
     })
 });
-
+//This is for the GedReadyForTheGame page. Posting some info needed to start
+//taking the stats. 
 router.post('/', (req, res)=>{
     console.log('in POST Req.body ready for game', req.body);
     const insertGameInput = `
-    INSERT INTO "game" ("date", "court_id")
-    VALUES ($1, $2)
+    INSERT INTO "game" ("date", "court_id", "username_id")
+    VALUES ($1, $2, $3)
     RETURNING "id";
     `;
-    pool.query (insertGameInput, [req.body.date, req.body.court_id])
+    pool.query (insertGameInput, [req.body.date, req.body.court_id, req.body.username_id])
     .then ((result)=>{
         console.log('New Game id:', result.rows[0].id);
         const createGameId = result.rows[0].id

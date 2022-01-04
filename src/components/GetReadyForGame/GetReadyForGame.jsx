@@ -17,6 +17,7 @@ function GetReadyForGame() {
     //grabbing the Court reducer
     const courtReducer = useSelector ((store)=> store.courtReducer)
     const playerReducer = useSelector((store) => store.playerReducer)
+  
 
     useEffect (()=>{
         //Need to Get Courts and put it here
@@ -36,6 +37,7 @@ function GetReadyForGame() {
         event.preventDefault();
         setCourtID(event.target.value);
     };
+
     function choosePlayer(event) {
         event.preventDefault();
         setPlayerId(event.target.value);
