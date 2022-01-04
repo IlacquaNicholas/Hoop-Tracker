@@ -12,6 +12,7 @@ function GetReadyForGame() {
     //setting local state
     const [courtId, setCourtID] = useState(0);
     const [playerId, setPlayerId] = useState(0);
+    const [dateInput, setDateInput] = useState('');
 
     //grabbing the Court reducer
     const courtReducer = useSelector ((store)=> store.courtReducer)
@@ -44,8 +45,9 @@ function GetReadyForGame() {
         dispatch({
             type: 'SAGA_READY_FOR_GAME',
             payload: {
-                name: courtId, 
-                team_name:playerId
+                date: dateInput,
+                court_id: courtId, 
+                playerName_id:playerId
             }
         })
         history.push('/info')
@@ -66,7 +68,8 @@ function GetReadyForGame() {
                     return <option key={player.id} value={player.id}>{player.team_name}</option>
                 })}
             </select>
-            <DatePage/>
+            <input type='date' placeholder='Select Date'
+                value={dateInput} onChange={(event) => setDateInput(event.target.value)} />
             <div>
                 <button onClick={handleReadyForGame}>Ready for the Game</button>
             </div>

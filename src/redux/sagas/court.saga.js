@@ -19,7 +19,11 @@ function* fetchCourts(){
 function* fetchReadyForGame(){
     try{
         const response = yield axios({
-            type:'SET_GAME',
+            method:'GET',
+            url: 
+        })
+        yield put({
+            type: 'SET_GAME',
             payload: response.data
         })
     } catch (err) {
