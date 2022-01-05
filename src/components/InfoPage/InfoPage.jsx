@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { useState } from 'react';
 
 
 // This is one of our simplest components
@@ -10,8 +11,21 @@ import { useHistory } from 'react-router';
 
 function InfoPage() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
+  const [threeMade, setThreeMade]= useState(0)
+  
   const playerReducer = useSelector((store) => store.playerReducer)
+
+  const onMadeShot = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: 'SAGA_ADD_STAT',
+      payload: {
+        three_made: threeMade,
+      }
+    })
+  }
 
 
 
@@ -36,7 +50,7 @@ function InfoPage() {
               {playerReducer.map((player) => {
                 return <tr key={player.id}> {player.player_name}</tr>
               })}
-              <td><button>Made</button></td>
+              <td><button onClick={onMadeShot}>Made</button></td>
               <td><button>Missed</button></td>
               {/* <td><button>Made</button></td>
               <td><button>Missed</button></td> */}

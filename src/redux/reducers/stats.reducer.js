@@ -1,9 +1,9 @@
 const statsReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_STATS'://Will I need one for each stat being taken? 
+        case 'SET_THREE_MADE'://Will I need one for each stat being taken? 
             return action.payload;
         default:
-            return state + 1;
+            return state;
     }
 };
 

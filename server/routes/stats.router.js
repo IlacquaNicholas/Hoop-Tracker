@@ -3,14 +3,18 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.post('/', (req, res)=>{
-    const statData = req.body
+    console.log('in POST /stats', req.body);
+    
+    const statData = req.body;
     const sqlText = `
-    INSERT INTO "playerName"
-    ("three_made","three_missed","two_made", "two_missed","total_points, "rebounds","assists","blocks","steals")
+    INSERT INTO "stats"
+    ("playerName_id", "game_id", "three_made", "three_missed", "two_made", "two_miss", "total_points", "rebounds", "assists", "blocks", "steals")
     VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9);
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
     `;
     const sqlValues = [
+        statData.playerName_id,
+        statData.game_id,
         statData.three_made, 
         statData.three_missed,
         statData.two_made,
@@ -20,7 +24,7 @@ router.post('/', (req, res)=>{
         statData.assists,
         statData.blocks,
         statData.steals
-    ]
+    ];
     pool.query(sqlText, sqlValues)
     .then((dbRes)=>{
         res.sendStatus(201)
