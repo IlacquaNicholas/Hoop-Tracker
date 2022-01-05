@@ -3,10 +3,9 @@ const statsReducer = (state = [], action) => {
         case 'SET_STATS'://Will I need one for each stat being taken? 
             return action.payload;
         default:
-            return state;
+            return state + 1;
     }
 };
 
-// user will be on the redux state at:
-// state.user
+
 export default statsReducer;
