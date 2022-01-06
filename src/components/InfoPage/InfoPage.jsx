@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
+import './InfoPage.css';
 
 
 // This is one of our simplest components

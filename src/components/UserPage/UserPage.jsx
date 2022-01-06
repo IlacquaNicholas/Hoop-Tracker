@@ -61,7 +61,9 @@ function UserPage() {
         })}
       </ul>
         <button onClick={onGetReadyClick}>Get Ready for a Game</button>
+        <div>
       <LogOutButton className="btn" />
+        </div>
     </div>
     </>
   );
