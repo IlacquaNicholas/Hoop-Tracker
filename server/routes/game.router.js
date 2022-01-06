@@ -2,8 +2,49 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-// router.post('/', (req, res)=>{
-//     console.log('in POST /stats', req.body);
+router.post('/', (req, res)=>{
+    console.log('in POST /stats', req.body);
+    const gameData = `
+    INSERT INTO "game" ("comments")
+    VALUES ($1)
+    RETURNING "id";
+    `
+    pool.query(gameData, [req.body.comments])
+    .then((result)=>{
+        console.log('New Game Id:', result.rows[0].id);
+        const createdGameId = result.rows[0].id;
+        const insertStatData = `
+        INSERT INTO "stats"
+        ("playerName_id", "game_id", "three_made", "three_missed", "two_made", "two_miss", "total_points", "rebounds", "assists", "blocks", "steals")
+        VALUES
+        ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
+        `;
+        const statData = req.body;
+        const sqlValues = [
+            statData.playerName_id,
+            statData.game_id,
+            statData.three_made, 
+            statData.three_missed,
+            statData.two_made,
+            statData.two_missed, 
+            statData.total_points,
+            statData.rebounds,
+            statData.assists,
+            statData.blocks,
+            statData.steals
+        ];
+        pool.query(insertStatData, [createdGameId, sqlValues])
+        .then ((result)=>{
+            console.log('in POST /game', result);
+            res.sendStatus(201);
+        })
+        .catch((err)=>{
+            console.log('in post /game err', err);
+            res.sendStatus(500)
+        })
+    })
+})
+
     
 //     const statData = req.body;
 //     const sqlText = `
@@ -33,7 +74,7 @@ const router = express.Router();
 //         console.log('In Post /stats', dbErr);
 //         res.sendStatus(500)
 //     })
-// })
+
 
 // router.put ('/', (req, res)=>{
 //     console.log('In Put /stats', req.body);

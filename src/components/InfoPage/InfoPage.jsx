@@ -21,6 +21,7 @@ function InfoPage() {
   const [assists, setAssists] = useState(0)
   const [blocks, setBlocks] = useState(0)
   const [steals, setSteals] = useState(0)
+  const [commentInput, setCommentInput] = useState('')
 
 
 
@@ -85,6 +86,7 @@ function InfoPage() {
     })
   }
 
+  
 
     return (
       <div>
@@ -118,6 +120,15 @@ function InfoPage() {
             </tr>
           </tbody>
         </table>
+        <div>
+          <textarea
+            value={commentInput}
+            type='text'
+            onChange={(event) => {setCommentInput(event.target.value) }}
+            placeholder="Comments about the game"
+          />
+          <button>Submit the Game</button>
+        </div>
       </div>
   );
 }

@@ -20,7 +20,6 @@ rebounds:0, assists:0, blocks:0, steals:0 }, action) => {
             return { ...state, blocks: state.blocks + 1 }
         case 'SET_STEALS'://Will I need one for each stat being taken? 
             return { ...state, steals: state.steals + 1 }
-        
             default: 
                 return state; 
 }
