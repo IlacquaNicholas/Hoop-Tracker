@@ -5,8 +5,8 @@ const router = express.Router();
 router.post('/', (req, res)=>{
     console.log('in POST /stats', req.body);
     const gameData = `
-    INSERT INTO "game" ("comments")
-    VALUES ($1)
+    INSERT INTO "game" ("date", "comments", "court_id")
+    VALUES ($1, $2, $3)
     RETURNING "id";
     `
     pool.query(gameData, [req.body.comments])
@@ -34,8 +34,8 @@ router.post('/', (req, res)=>{
             statData.steals
         ];
         pool.query(insertStatData, [createdGameId, sqlValues])
-        .then ((result)=>{
-            console.log('in POST /game', result);
+        .then ((dbResult)=>{
+            console.log('in POST /game', dbResult);
             res.sendStatus(201);
         })
         .catch((err)=>{
@@ -45,35 +45,12 @@ router.post('/', (req, res)=>{
     })
 })
 
-    
-//     const statData = req.body;
+// router.get ('/', (req, res)=>{
 //     const sqlText = `
-//     INSERT INTO "stats"
-//     ("playerName_id", "game_id", "three_made", "three_missed", "two_made", "two_miss", "total_points", "rebounds", "assists", "blocks", "steals")
-//     VALUES
-//     ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
-//     `;
-//     const sqlValues = [
-//         statData.playerName_id,
-//         statData.game_id,
-//         statData.three_made, 
-//         statData.three_missed,
-//         statData.two_made,
-//         statData.two_missed, 
-//         statData.total_points,
-//         statData.rebounds,
-//         statData.assists,
-//         statData.blocks,
-//         statData.steals
-//     ];
-//     pool.query(sqlText, sqlValues)
-//     .then((dbRes)=>{
-//         res.sendStatus(201)
-//     })
-//     .catch((dbErr)=>{
-//         console.log('In Post /stats', dbErr);
-//         res.sendStatus(500)
-//     })
+    
+    
+//     `
+// })
 
 
 // router.put ('/', (req, res)=>{

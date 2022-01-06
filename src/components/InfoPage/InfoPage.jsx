@@ -22,12 +22,28 @@ function InfoPage() {
   const [blocks, setBlocks] = useState(0)
   const [steals, setSteals] = useState(0)
   const [commentInput, setCommentInput] = useState('')
+  const [dateInput, setDateInput] = useState('');
+  const[courtId, setCourtID] = useState(0);
 
 
 
   const [playerName, setPlayerName]= useState('')
+  const [gameId, setGameId] = useState('')
   
   const playerReducer = useSelector((store) => store.playerReducer)
+  const courtReducer = useSelector((store) => store.courtReducer)
+
+  useEffect(() => {
+    //Need to Get Courts and put it here
+    dispatch({
+      type: 'SAGA_FETCH_COURTS'
+    })
+  }, [])
+
+  function chooseCourt(event) {
+    event.preventDefault();
+    setCourtID(event.target.value);
+  };
 
   const onMadeThree = (e) => {
     e.preventDefault();
@@ -85,11 +101,41 @@ function InfoPage() {
       payload: steals
     })
   }
+  const handleSubmitGame = (e)=>{
+    e.preventDefault();
+    dispatch({
+      type:'SAGA_ADD_GAME_STATS',
+      payload:{
+        playerName_id: playerName ,
+        game_id: gameId,
+        three_made: threeMade,
+        three_missed: threeMissed,
+        two_made: twoMade,
+        two_missed: twoMiss,
+        // total_points:,
+        rebounds: rebounds,
+        assists: assists,
+        blocks: blocks,
+        steals: steals,
+        comments: commentInput,
+        date: dateInput,
+        court_id: courtId,
+      }
+    })
+  }
 
-  
+
 
     return (
       <div>
+        <input type='date' placeholder='Select Date'
+          value={dateInput} onChange={(event) => setDateInput(event.target.value)} />
+        <select value={courtId} onChange={chooseCourt}>
+          <option disabled value='0'>Select Court</option>
+          {courtReducer.map((court) => {
+            return <option key={court.id} value={court.id}>{court.name}</option>
+          })}
+        </select>
         <table>
           <thead>
             <tr>
@@ -107,7 +153,7 @@ function InfoPage() {
           <tbody>
             <tr>
               {playerReducer.map((player) => {
-                return <tr key={player.id}> {player.player_name}</tr>
+                return <tr key={player.id} value={player.id}> {player.player_name}</tr>
               })}
               <td><button onClick={onMadeThree}>Made</button></td>
               <td><button onClick={onMissedThree}>Missed</button></td>
@@ -127,7 +173,7 @@ function InfoPage() {
             onChange={(event) => {setCommentInput(event.target.value) }}
             placeholder="Comments about the game"
           />
-          <button>Submit the Game</button>
+          <button onClick={handleSubmitGame}>Submit the Game</button>
         </div>
       </div>
   );
