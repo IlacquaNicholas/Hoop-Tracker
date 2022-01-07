@@ -28,9 +28,12 @@ function InfoPage() {
 
 
 
+
   const [playerName, setPlayerName]= useState('')
   const [gameId, setGameId] = useState('')
-  
+  // const [userId, setUserId] = useState('')
+
+  // const user = useSelector((store) => store.user);
   const playerReducer = useSelector((store) => store.playerReducer)
   const courtReducer = useSelector((store) => store.courtReducer)
 
@@ -107,6 +110,7 @@ function InfoPage() {
     dispatch({
       type:'SAGA_ADD_GAME_STATS',
       payload:{
+        // username_id: userId,
         playerName_id: playerName ,
         game_id: gameId,
         three_made: threeMade,

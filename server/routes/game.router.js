@@ -6,10 +6,10 @@ router.post('/', (req, res)=>{
     console.log('in POST /stats', req.body);
     const gameData = `
     INSERT INTO "game" ("date", "comments", "court_id")
-    VALUES ($1, $2, $3)
+    VALUES ($1, $2, $3,)
     RETURNING "id";
     `
-    pool.query(gameData, [req.body.comments])
+    pool.query(gameData, [req.body.date, req.body.comments, req.body.court_id])
     .then((result)=>{
         console.log('New Game Id:', result.rows[0].id);
         const createdGameId = result.rows[0].id;
@@ -22,7 +22,6 @@ router.post('/', (req, res)=>{
         const statData = req.body;
         const sqlValues = [
             statData.playerName_id,
-            statData.game_id,
             statData.three_made, 
             statData.three_missed,
             statData.two_made,
