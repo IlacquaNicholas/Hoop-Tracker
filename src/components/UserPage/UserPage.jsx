@@ -34,7 +34,7 @@ function UserPage() {
     })
   }
   const onGetReadyClick = ()=>{
-    history.push('/getReady')
+    history.push('/info')
   }
   
 
@@ -60,7 +60,7 @@ function UserPage() {
             return <li key={player.id}> {player.team_name} {player.player_name} <button onClick={() => deletePlayer(player.id)}>Delete</button></li>
         })}
       </ul>
-        <button onClick={onGetReadyClick}>Get Ready for a Game</button>
+        <button onClick={onGetReadyClick}>Let the stat keeping begin!</button>
         <div>
       <LogOutButton className="btn" />
         </div>

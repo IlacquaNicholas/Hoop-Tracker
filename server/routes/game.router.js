@@ -44,12 +44,32 @@ router.post('/', (req, res)=>{
     })
 })
 
-// router.get ('/', (req, res)=>{
-//     const sqlText = `
-    
-    
-//     `
-// })
+router.get ('/', (req, res)=>{
+    const sqlText = `
+    SELECT 
+        "stats"."three_made",
+        "stats"."three_missed",
+        "stats"."two_made",
+        "stats"."two_miss",
+        "stats"."rebounds",
+        "stats"."assists",
+        "stats"."blocks",
+        "stats"."steals"
+    FROM "stats"
+    JOIN "game"
+        ON "game"."id"="stats"."game_id"
+    WHERE "stats"."id"
+    `;
+    pool.query(sqlText)
+    .then((result)=>{
+        console.log('In GET /game', result.rows);
+        res.send(result.rows)
+    })
+    .catch((dbErr) => {
+        console.log('In GET /game', dbErr);
+        res.sendStatus(500)
+    })
+})
 
 
 // router.put ('/', (req, res)=>{

@@ -108,6 +108,7 @@ function InfoPage() {
         court_id: courtId,
       }
     })
+    history.push('/seeGameStats')
   }
 
 

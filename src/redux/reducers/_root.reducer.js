@@ -5,6 +5,7 @@ import playerReducer from './player.reducer';
 import statsReducer from './stats.reducer';
 import courtReducer from './court.reducer';
 import gameReducer from './game.reducer';
+import displayStatsReducer from './displayStats.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   playerReducer, // This will hold my players and team names
   statsReducer, // This will hold all the stats being taken
   courtReducer, //This will hold the courts being played at
-  gameReducer //This is to keep all the info needed to start a game 
+  gameReducer, //This is to keep all the info needed to start a game 
+  displayStatsReducer // This will grab all stats that were recorded from a single game
 });
 
 export default rootReducer;

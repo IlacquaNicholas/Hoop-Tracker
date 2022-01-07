@@ -19,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import GetReadyForGame from '../GetReadyForGame/GetReadyForGame';
+import CheckOutGameStats from '../CheckOutGameStats/CheckOutGameStats';
 
 import './App.css';
 
@@ -51,9 +51,9 @@ function App() {
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/getReady"
+            path="/seeGameStats"
           >
-            <GetReadyForGame />
+            <CheckOutGameStats />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
