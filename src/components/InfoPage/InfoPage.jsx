@@ -97,7 +97,7 @@ function InfoPage() {
         three_made: statsReducer.three_made,
         three_missed: statsReducer.three_missed,
         two_made: statsReducer.two_made,
-        two_missed: statsReducer.two_miss,
+        two_miss: statsReducer.two_miss,
         // total_points:,
         rebounds: statsReducer.rebounds,
         assists: statsReducer.assists,

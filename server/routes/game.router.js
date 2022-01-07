@@ -5,11 +5,11 @@ const router = express.Router();
 router.post('/', (req, res)=>{
     console.log('in POST /stats', req.body);
     const gameData = `
-    INSERT INTO "game" ("date", "comments", "court_id")
-    VALUES ($1, $2, $3)
+    INSERT INTO "game" ("date", "comments", "court_id", "username_id")
+    VALUES ($1, $2, $3, $4)
     RETURNING "id";
     `
-    pool.query(gameData, [req.body.date, req.body.comments, req.body.court_id])
+    pool.query(gameData, [req.body.date, req.body.comments, req.body.court_id, req.user.id])
     .then((result)=>{
         console.log('New Game Id:', result.rows[0].id);
         const createdGameId = result.rows[0].id;
