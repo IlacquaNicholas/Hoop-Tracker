@@ -14,28 +14,16 @@ function InfoPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [threeMade, setThreeMade]= useState(0)
-  const [threeMissed, setThreeMissed] = useState(0)
-  const [twoMade, setTwoMade] = useState(0)
-  const [twoMiss, setTwoMiss] = useState(0)
-  const [rebounds, setRebounds] = useState(0)
-  const [assists, setAssists] = useState(0)
-  const [blocks, setBlocks] = useState(0)
-  const [steals, setSteals] = useState(0)
   const [commentInput, setCommentInput] = useState('')
   const [dateInput, setDateInput] = useState('');
   const[courtId, setCourtID] = useState(0);
 
-
-
-
-  const [playerName, setPlayerName]= useState('')
-  const [gameId, setGameId] = useState('')
   // const [userId, setUserId] = useState('')
 
   // const user = useSelector((store) => store.user);
   const playerReducer = useSelector((store) => store.playerReducer)
   const courtReducer = useSelector((store) => store.courtReducer)
+  const statsReducer = useSelector((store) => store.statsReducer)
 
   useEffect(() => {
     //Need to Get Courts and put it here
@@ -53,56 +41,50 @@ function InfoPage() {
     e.preventDefault();
     dispatch({
       type: 'SET_THREE_MADE',
-      payload: threeMade
     })
   }
   const onMissedThree = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_THREE_MISSED',
-      payload: threeMissed
+
     })
   }
   const onMadeTwo = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_TWO_MADE',
-      payload: twoMade
     })
   }
   const onMissedTwo = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_TWO_MISS',
-      payload: twoMiss
     })
   }
   const onRebound = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_REBOUNDS',
-      payload: rebounds
+      
     })
   }
   const onAssists = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_ASSISTS',
-      payload: assists
     })
   }
   const onBlock = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_BLOCKS',
-      payload: blocks
     })
   }
   const onSteal = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_STEALS',
-      payload: steals
     })
   }
   const handleSubmitGame = (e)=>{
@@ -111,17 +93,16 @@ function InfoPage() {
       type:'SAGA_ADD_GAME_STATS',
       payload:{
         // username_id: userId,
-        playerName_id: playerName ,
-        game_id: gameId,
-        three_made: threeMade,
-        three_missed: threeMissed,
-        two_made: twoMade,
-        two_missed: twoMiss,
+        playerName_id: playerReducer[0].id ,
+        three_made: statsReducer.three_made,
+        three_missed: statsReducer.three_missed,
+        two_made: statsReducer.two_made,
+        two_missed: statsReducer.two_miss,
         // total_points:,
-        rebounds: rebounds,
-        assists: assists,
-        blocks: blocks,
-        steals: steals,
+        rebounds: statsReducer.rebounds,
+        assists: statsReducer.assists,
+        blocks: statsReducer.blocks,
+        steals: statsReducer.steals,
         comments: commentInput,
         date: dateInput,
         court_id: courtId,
