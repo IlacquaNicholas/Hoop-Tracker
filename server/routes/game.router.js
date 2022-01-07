@@ -47,6 +47,7 @@ router.post('/', (req, res)=>{
 router.get ('/', (req, res)=>{
     const sqlText = `
     SELECT 
+        "playerName"."player_name",
         "stats"."three_made",
         "stats"."three_missed",
         "stats"."two_made",
@@ -54,13 +55,23 @@ router.get ('/', (req, res)=>{
         "stats"."rebounds",
         "stats"."assists",
         "stats"."blocks",
-        "stats"."steals"
+        "stats"."steals", 
+        "game"."date",
+        "game"."comments",
+        "court"."name"
     FROM "stats"
-    JOIN "game"
-        ON "game"."id"="stats"."game_id"
-    WHERE "stats"."id"
+	    JOIN "game"
+            ON "stats"."game_id"="game"."id"
+        JOIN "court"
+    	    ON "game"."court_id"="court"."id"
+        JOIN "playerName"
+    	    ON "stats"."playerName_id"="playerName"."id"
+    WHERE "game"."id" = $1
     `;
-    pool.query(sqlText)
+    const sqlValues = [
+        req.params.id
+    ]
+    pool.query(sqlText, sqlValues)
     .then((result)=>{
         console.log('In GET /game', result.rows);
         res.send(result.rows)
