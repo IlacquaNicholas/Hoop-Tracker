@@ -72,9 +72,19 @@ router.get ('/', (req, res)=>{
         req.params.id
     ]
     pool.query(sqlText, sqlValues)
-    .then((result)=>{
-        console.log('In GET /game', result.rows);
-        res.send(result.rows)
+    .then((dbRes)=>{
+        let gameDisplay = {}
+        gameDisplay.three_made = dbRes[0].three_made;
+        gameDisplay.three_missed = dbRes[0].three_missed;
+        gameDisplay.two_made = dbRes[0].two_made;
+        gameDisplay.two_miss = dbRes[0].two_miss;
+        gameDisplay.rebounds = dbRes[0].rebounds;
+        gameDisplay.assists = dbRes[0].assists;
+        gameDisplay.blocks = dbRes[0].blocks;
+        gameDisplay.steals = dbRes[0].steals;
+
+        res.send(gameDisplay)
+        
     })
     .catch((dbErr) => {
         console.log('In GET /game', dbErr);
