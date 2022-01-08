@@ -44,7 +44,7 @@ router.post('/', (req, res)=>{
     })
 })
 
-router.get ('/', (req, res)=>{
+router.get ('/:id', (req, res)=>{
     const sqlText = `
     SELECT 
         "playerName"."player_name",
@@ -72,7 +72,9 @@ router.get ('/', (req, res)=>{
         req.params.id
     ]
     pool.query(sqlText, sqlValues)
+    
     .then((dbRes)=>{
+        console.log('In GET /game', sqlValues);
         let gameDisplay = {}
         gameDisplay.three_made = dbRes[0].three_made;
         gameDisplay.three_missed = dbRes[0].three_missed;
@@ -82,7 +84,18 @@ router.get ('/', (req, res)=>{
         gameDisplay.assists = dbRes[0].assists;
         gameDisplay.blocks = dbRes[0].blocks;
         gameDisplay.steals = dbRes[0].steals;
-
+        gameDisplay.court = dbRes.rows.map((row)=>{
+            return row.name
+        });
+        gameDisplay.game = dbRes.rows.map((row)=>{
+            return row.date, 
+            row.comments
+        })
+        gameDisplay.playerName = dbRes.rows.map((row)=>{
+            return row.player_name
+        })
+        console.log('#########In GET /game', gameDisplay.three_made);
+        
         res.send(gameDisplay)
         
     })
