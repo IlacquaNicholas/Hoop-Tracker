@@ -45,6 +45,9 @@ router.post('/', (req, res)=>{
 })
 
 router.get ('/', (req, res)=>{
+    
+console.log('In GET /game', req.params.id);
+
     const sqlText = `
     SELECT 
         "stats"."three_made",
@@ -66,7 +69,7 @@ router.get ('/', (req, res)=>{
     	    ON "game"."court_id"="court"."id"
         JOIN "playerName"
     	    ON "stats"."playerName_id"="playerName"."id"
-    WHERE "game"."id" = $1;
+    WHERE "stats"."id" = $1;
     `;
     pool.query(sqlText, [req.params.id])
     .then((dbRes)=>{
