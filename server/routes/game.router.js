@@ -44,10 +44,9 @@ router.post('/', (req, res)=>{
     })
 })
 
-router.get ('/:id', (req, res)=>{
+router.get ('/', (req, res)=>{
     const sqlText = `
     SELECT 
-        "playerName"."player_name",
         "stats"."three_made",
         "stats"."three_missed",
         "stats"."two_made",
@@ -56,9 +55,10 @@ router.get ('/:id', (req, res)=>{
         "stats"."assists",
         "stats"."blocks",
         "stats"."steals", 
+        "court"."name",
         "game"."date",
         "game"."comments",
-        "court"."name"
+        "playerName"."player_name"
     FROM "stats"
 	    JOIN "game"
             ON "stats"."game_id"="game"."id"
@@ -68,39 +68,35 @@ router.get ('/:id', (req, res)=>{
     	    ON "stats"."playerName_id"="playerName"."id"
     WHERE "game"."id" = $1
     `;
-    const sqlValues = [
-        req.params.id
-    ]
-    pool.query(sqlText, sqlValues)
-    
+    const sqlValues = req.params.id
+    pool.query(sqlText, [sqlValues])
     .then((dbRes)=>{
-        console.log('In GET /game', sqlValues);
-        let gameDisplay = {}
-        gameDisplay.three_made = dbRes[0].three_made;
-        gameDisplay.three_missed = dbRes[0].three_missed;
-        gameDisplay.two_made = dbRes[0].two_made;
-        gameDisplay.two_miss = dbRes[0].two_miss;
-        gameDisplay.rebounds = dbRes[0].rebounds;
-        gameDisplay.assists = dbRes[0].assists;
-        gameDisplay.blocks = dbRes[0].blocks;
-        gameDisplay.steals = dbRes[0].steals;
-        gameDisplay.court = dbRes.rows.map((row)=>{
-            return row.name
-        });
-        gameDisplay.game = dbRes.rows.map((row)=>{
-            return row.date, 
-            row.comments
-        })
-        gameDisplay.playerName = dbRes.rows.map((row)=>{
-            return row.player_name
-        })
-        console.log('#########In GET /game', gameDisplay.three_made);
-        
-        res.send(gameDisplay)
+        // let gameDisplay = {}
+        // gameDisplay.three_made = dbRes.rows[0].three_made;
+        // gameDisplay.three_missed = dbRes.rows[0].three_missed;
+        // gameDisplay.two_made = dbRes.rows[0].two_made;
+        // gameDisplay.two_miss = dbRes.rows[0].two_miss;
+        // gameDisplay.rebounds = dbRes.rows[0].rebounds;
+        // gameDisplay.assists = dbRes.rows[0].assists;
+        // gameDisplay.blocks = dbRes.rows[0].blocks;
+        // gameDisplay.steals = dbRes.rows[0].steals;
+        // gameDisplay.court = dbRes.rows.map((row)=>{
+        //     return row.name
+        // });
+        // gameDisplay.game = dbRes.rows.map((row)=>{
+        //     return row.date, 
+        //     row.comments
+        // })
+        // gameDisplay.playerName = dbRes.rows.map((row)=>{
+        //     return row.player_name
+        // })
+        // console.log('#########In GET /game', gameDisplay);
+        res.send(dbRes.rows[0])
+        console.log('In GET /game', dbRes.rows);
         
     })
     .catch((dbErr) => {
-        console.log('In GET /game', dbErr);
+        console.log('*****In GET /game', dbErr);
         res.sendStatus(500)
     })
 })

@@ -2,18 +2,19 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-function* fetchGameStats(){
+function* fetchGameStats(action){
     try{
-        const response = yield axios ({
+        console.log('in fetchGameStats', action.payload);
+        
+        const response = yield axios({
             method: 'GET',
-            url: '/game'
+            url: `/game/${action.payload}`
         })
         console.log('in fetchGameStats saga response.data', response.data);
         yield put ({
             type: 'SET_DISPLAY_STATS',
             payload: response.data
         })
-        
     } catch (err) {
         console.log('in  fetchGameStats saga error', err);
     }
