@@ -8,7 +8,7 @@ function* fetchGameStats(action){
         
         const response = yield axios({
             method: 'GET',
-            url: `/game/${action.payload}`
+            url: '/game'
         })
         console.log('in fetchGameStats saga response.data', response.data);
         yield put ({

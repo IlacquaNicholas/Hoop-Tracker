@@ -66,11 +66,12 @@ router.get ('/', (req, res)=>{
     	    ON "game"."court_id"="court"."id"
         JOIN "playerName"
     	    ON "stats"."playerName_id"="playerName"."id"
-    WHERE "game"."id" = $1
+    WHERE "game"."id" = $1;
     `;
-    const sqlValues = req.params.id
-    pool.query(sqlText, [sqlValues])
+    pool.query(sqlText, [req.params.id])
     .then((dbRes)=>{
+        console.log('#########In GET /game', dbRes.rows);
+        res.send(dbRes.rows)
         // let gameDisplay = {}
         // gameDisplay.three_made = dbRes.rows[0].three_made;
         // gameDisplay.three_missed = dbRes.rows[0].three_missed;
@@ -89,10 +90,7 @@ router.get ('/', (req, res)=>{
         // })
         // gameDisplay.playerName = dbRes.rows.map((row)=>{
         //     return row.player_name
-        // })
-        // console.log('#########In GET /game', gameDisplay);
-        res.send(dbRes.rows[0])
-        console.log('In GET /game', dbRes.rows);
+        // }
         
     })
     .catch((dbErr) => {
