@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import CheckOutGameStats from '../CheckOutGameStats/CheckOutGameStats';
+import EditStats from '../EditStats/EditStats';
 
 import './App.css';
 
@@ -102,6 +103,9 @@ function App() {
               // Otherwise, show the registration page
               <RegisterPage />
             }
+          </Route>
+          <Route exact path= "/edit/:id">
+            <EditStats/>
           </Route>
 
           <Route
