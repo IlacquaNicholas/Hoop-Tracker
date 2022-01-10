@@ -37,9 +37,23 @@ function* addGameStats (action){
     }
 }
 
+function* fetchOnePlayer (action){
+    try{
+        const response = yield axios({
+            method:'GET',
+            url:`/game/${action.payload}`
+        })
+        console.log('fetchOnePlayer response.data', response.data);
+        
+    } catch (err) {
+        console.log('in fetchOnePlayer saga error', err);
+    }
+}
+
 
 function* statKeeperSaga() {
     yield takeLatest('SAGA_ADD_GAME_STATS', addGameStats)
     yield takeLatest('SAGA_FETCH_GAME_STATS', fetchGameStats)
+    yield takeLatest('SAGA_FETCH_ONE_PLAYER', fetchOnePlayer)
 }
 export default statKeeperSaga;

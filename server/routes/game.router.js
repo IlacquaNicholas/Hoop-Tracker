@@ -47,7 +47,6 @@ router.post('/', (req, res)=>{
 router.get ('/', (req, res)=>{
     
 console.log('In GET /game', req.user.id);
-
     const sqlText = `
     SELECT 
         "stats"."game_id",
@@ -103,10 +102,37 @@ console.log('In GET /game', req.user.id);
     })
 })
 
+//Making a route to get just one players stats
+router.get('/:id', (req,res) =>{
+    const sqlText = `
+    SELECT 
+        "stats"."three_made",
+        "stats"."three_missed",
+        "stats"."two_made",
+        "stats"."two_miss",
+        "stats"."rebounds",
+        "stats"."assists",
+        "stats"."blocks",
+        "stats"."steals" 
+    FROM "stats"
+    WHERE "id" = $1;
+    `;
+    const sqlValues = [
+        req.params.id
+    ]
+    pool.query(sqlText, sqlValues)
+    .then ((dbRes)=>{
+        res.send(dbRes.rows)
+    })
+    .catch((dbErr)=>{
+        console.log('in GET edit /game err', dbErr);
+        res.sendStatus(500)
+    })
+});
 
+
+//this ot route is to help edit a players stats
 router.put ('/:id', (req, res)=>{
-    console.log('In Put /stats', req.body);
-    console.log('In Put /stats', req.params);
     const sqlText = `
     UPDATE "stats"
     SET
@@ -133,7 +159,7 @@ router.put ('/:id', (req, res)=>{
     ]
     pool.query(sqlText, sqlValues)
     .then ((dbRes)=>{
-        res.sendStatus(201)
+        res.sendStatus(200)
     })
     .catch((dbErr)=>{
         console.log('In Put Error', dbErr);
