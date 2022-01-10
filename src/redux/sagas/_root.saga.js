@@ -6,6 +6,7 @@ import addPlayerSaga from './addPlayer.saga';
 import statKeeperSaga from './statKeeper.saga';
 import getCourtSaga from './court.saga';
 import getGamesSaga from './game.saga';
+import editStatSaga from './editStats.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -20,7 +21,8 @@ export default function* rootSaga() {
     userSaga(),
     addPlayerSaga(), 
     statKeeperSaga(),
-    getGamesSaga, 
+    getGamesSaga(), 
+    editStatSaga(),
     getCourtSaga()
   ]);
 }

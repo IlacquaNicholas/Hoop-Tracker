@@ -14,7 +14,7 @@ function EditStats(){
 
     useEffect(() => {
         dispatch({
-            type:'SAGA_FETCH_ONE_PLAYER',
+            type:'SAGA_FETCH_PLAYER_STATS',
             payload: params.id
         })
     }, [])

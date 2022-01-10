@@ -48,9 +48,10 @@ router.post('/', (req, res)=>{
 //This is to grab all the all the stats saga is fetchGameStats sags
 //Also the reducer is SET_DISPLAY_STATS
 router.get('/:id', (req,res) =>{
+    console.log('#####', req.params.id);
+    
     const sqlText = `
     SELECT 
-        "stats"."game_id",
         "stats"."three_made",
         "stats"."three_missed",
         "stats"."two_made",
@@ -70,13 +71,15 @@ router.get('/:id', (req,res) =>{
     	    ON "game"."court_id"="court"."id"
         JOIN "playerName"
     	    ON "stats"."playerName_id"="playerName"."id"
-    WHERE "game"."id" = $1;
+        WHERE "game"."id"=$1;
     `;
     const sqlValues = [
         req.params.id
     ]
     pool.query(sqlText, sqlValues)
     .then ((dbRes)=>{
+        console.log('dbRes.rows', dbRes.rows);
+        
         res.send(dbRes.rows[0])
     })
     .catch((dbErr)=>{

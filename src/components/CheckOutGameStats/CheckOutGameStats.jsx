@@ -16,16 +16,18 @@ function CheckOutGameStats() {
     //need to create a 
     useEffect(() => {
         dispatch({
-            type: 'SAGA_FETCH_GAME_STATS'
+            type:'SAGA_FETCH_GAMES'
         })
     }, [])
 
     function chooseGame(event) {
         event.preventDefault();
+        console.log('event.target.value', event.target.value);
+        // setGameId(event.target.value);
         dispatch({
-            type: 'SAGA_FETCH_GAMES'
+            type: 'SAGA_FETCH_GAME_STATS',
+            payload: event.target.value
         })
-        setGameId(event.target.value);
     };
 
 
@@ -41,7 +43,6 @@ function CheckOutGameStats() {
             <h1>Lets see the stats for a game!</h1>
             <div>
                 <div>
-                    <p>Date: {displayStatsReducer.date}</p>
                     <p>Court: {displayStatsReducer.name}</p>
                 </div>
                 <table>

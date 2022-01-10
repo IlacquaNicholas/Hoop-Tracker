@@ -11,10 +11,14 @@
     [x]Add buttons to table
         [x] Make buttons functional
         [x] Make POST 
-        [] Create for multiple players
+        [] (stretch goal) Create for multiple players
 
-[] need to create a saga for the game ID 
-    [] create a reducer for the game ids 
-    [] dispatch that saga
-    [] should be able to map through that reducer with a drop down
+[x] need to create a saga for the game ID 
+    [x] create a reducer for the game ids 
+    [x] dispatch that saga
+    [x] should be able to map through that reducer with a drop down
     []
+
+[] need an edit button
+    []need a route for the edit function
+    [] 
