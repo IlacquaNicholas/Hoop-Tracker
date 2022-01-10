@@ -6,33 +6,38 @@ import { useParams } from 'react-router-dom';
 
 function CheckOutGameStats() {
 
-    // const [gameId, setGameId] = useState(0);
+    const [gameId, setGameId] = useState(0);
 
     const history = useHistory();
     const dispatch = useDispatch();
     const displayStatsReducer = useSelector((store) => store.displayStatsReducer)
-
+    const getGamesReducer = useSelector((store) => store.getGamesReducer)
+    
+    //need to create a 
     useEffect(() => {
         dispatch({
             type: 'SAGA_FETCH_GAME_STATS'
         })
     }, [])
 
-    // function chooseGame(event) {
-    //     event.preventDefault();
-    //     setGameId(event.target.value);
-    // };
+    function chooseGame(event) {
+        event.preventDefault();
+        dispatch({
+            type: 'SAGA_FETCH_GAMES'
+        })
+        setGameId(event.target.value);
+    };
 
 
     return(
         <div>
-            {/* <select value={gameId} onChange={(e) => setGameId(e.target.value)}>
+            <select value={gameId} onChange={chooseGame}>
                 <option disabled value= '0'>Select Game Number</option>
-                {displayStatsReducer.map((stat) => {
+                {getGamesReducer.map((game) => {
                     return( 
-                    <option key={stat.id} value={stat.id}>{stat.game_id}</option>
+                    <option key={game.id} value={game.id}>{game.date}</option>
                 )})}
-            </select> */}
+            </select>
             <h1>Lets see the stats for a game!</h1>
             <div>
                 <div>

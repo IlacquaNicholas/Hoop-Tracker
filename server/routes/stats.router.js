@@ -34,19 +34,20 @@ router.post('/', (req, res)=>{
         ];
         pool.query(insertStatData,sqlValues)
         .then ((dbResult)=>{
-            console.log('in POST /game', dbResult);
+            console.log('in POST /stats', dbResult);
             res.sendStatus(201);
         })
         .catch((err)=>{
-            console.log('in post /game err', err);
+            console.log('in post /stats err', err);
             res.sendStatus(500)
         })
     })
 })
 
-router.get ('/', (req, res)=>{
-    
-console.log('In GET /game', req.user.id);
+
+//This is to grab all the all the stats saga is fetchGameStats sags
+//Also the reducer is SET_DISPLAY_STATS
+router.get('/:id', (req,res) =>{
     const sqlText = `
     SELECT 
         "stats"."game_id",
@@ -69,63 +70,17 @@ console.log('In GET /game', req.user.id);
     	    ON "game"."court_id"="court"."id"
         JOIN "playerName"
     	    ON "stats"."playerName_id"="playerName"."id"
-    WHERE "stats"."id" = $1;
-    `;
-    pool.query(sqlText, [req.user.id])
-    .then((dbRes)=>{
-        console.log('#########In GET /game', dbRes.rows[0]);
-        res.send(dbRes.rows[0])
-        // let gameDisplay = {}
-        // gameDisplay.three_made = dbRes.rows[0].three_made;
-        // gameDisplay.three_missed = dbRes.rows[0].three_missed;
-        // gameDisplay.two_made = dbRes.rows[0].two_made;
-        // gameDisplay.two_miss = dbRes.rows[0].two_miss;
-        // gameDisplay.rebounds = dbRes.rows[0].rebounds;
-        // gameDisplay.assists = dbRes.rows[0].assists;
-        // gameDisplay.blocks = dbRes.rows[0].blocks;
-        // gameDisplay.steals = dbRes.rows[0].steals;
-        // gameDisplay.court = dbRes.rows.map((row)=>{
-        //     return row.name
-        // });
-        // gameDisplay.game = dbRes.rows.map((row)=>{
-        //     return row.date, 
-        //     row.comments
-        // })
-        // gameDisplay.playerName = dbRes.rows.map((row)=>{
-        //     return row.player_name
-        // }
-        
-    })
-    .catch((dbErr) => {
-        console.log('*****In GET /game', dbErr);
-        res.sendStatus(500)
-    })
-})
-
-//Making a route to get just one players stats
-router.get('/:id', (req,res) =>{
-    const sqlText = `
-    SELECT 
-        "stats"."three_made",
-        "stats"."three_missed",
-        "stats"."two_made",
-        "stats"."two_miss",
-        "stats"."rebounds",
-        "stats"."assists",
-        "stats"."blocks",
-        "stats"."steals" 
-    FROM "stats"
-    WHERE "id" = $1;
+    WHERE "game"."id" = $1;
     `;
     const sqlValues = [
         req.params.id
     ]
     pool.query(sqlText, sqlValues)
     .then ((dbRes)=>{
-        res.send(dbRes.rows)
+        res.send(dbRes.rows[0])
     })
     .catch((dbErr)=>{
-        console.log('in GET edit /game err', dbErr);
+        console.log('in GET edit /stats err', dbErr);
         res.sendStatus(500)
     })
 });

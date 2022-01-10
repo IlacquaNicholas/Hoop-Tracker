@@ -4,11 +4,10 @@ import axios from 'axios';
 
 function* fetchGameStats(action){
     try{
-        console.log('in fetchGameStats', action.payload);
         
         const response = yield axios({
             method: 'GET',
-            url: '/game'
+            url: `/stats/${action.payload}`
         })
         console.log('in fetchGameStats saga response.data', response.data);
         yield put ({
@@ -26,7 +25,7 @@ function* addGameStats (action){
     try{
         const response = yield axios({
             method: 'POST',
-            url:'/game',
+            url:'/stats',
             data: action.payload
         })
         yield put({
@@ -36,24 +35,24 @@ function* addGameStats (action){
         console.log('in addStat saga error', err);
     }
 }
-
-function* fetchOnePlayer (action){
-    try{
-        const response = yield axios({
-            method:'GET',
-            url:`/game/${action.payload}`
-        })
-        console.log('fetchOnePlayer response.data', response.data);
+// Use this for a possible edit
+// function* fetchOnePlayer (action){
+//     try{
+//         const response = yield axios({
+//             method:'GET',
+//             url:`/game/${action.payload}`
+//         })
+//         console.log('fetchOnePlayer response.data', response.data);
         
-    } catch (err) {
-        console.log('in fetchOnePlayer saga error', err);
-    }
-}
+//     } catch (err) {
+//         console.log('in fetchOnePlayer saga error', err);
+//     }
+// }
 
 
 function* statKeeperSaga() {
     yield takeLatest('SAGA_ADD_GAME_STATS', addGameStats)
     yield takeLatest('SAGA_FETCH_GAME_STATS', fetchGameStats)
-    yield takeLatest('SAGA_FETCH_ONE_PLAYER', fetchOnePlayer)
+    // yield takeLatest('SAGA_FETCH_ONE_PLAYER', fetchOnePlayer)
 }
 export default statKeeperSaga;

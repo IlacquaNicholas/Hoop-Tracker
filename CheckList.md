@@ -12,3 +12,9 @@
         [x] Make buttons functional
         [x] Make POST 
         [] Create for multiple players
+
+[] need to create a saga for the game ID 
+    [] create a reducer for the game ids 
+    [] dispatch that saga
+    [] should be able to map through that reducer with a drop down
+    []

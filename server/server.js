@@ -11,7 +11,8 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const playerRouter = require('./routes/player.router')
 const courtRouter = require('./routes/court.router')
-const gameRouter = require('./routes/game.router')
+const statsRouter = require('./routes/stats.router')
+const gameIdRouter = require('./routes/gameId.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,7 +29,8 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/addPlayer', playerRouter);
 app.use('/courtName', courtRouter);
-app.use('/game', gameRouter);
+app.use('/stats', statsRouter);
+app.use('/gameId', gameIdRouter);
 // Serve static files
 app.use(express.static('build'));
 
