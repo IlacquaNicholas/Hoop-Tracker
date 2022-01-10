@@ -11,7 +11,7 @@ function CheckOutStatsDetail ({stat}){
 
     return (
         <tr>
-            {/* <td>{stat.three_made}</td>
+            <td>{stat.three_made}</td>
             <td>{stat.three_missed}</td>
             <td>{stat.two_made}</td>
             <td>{stat.two_miss}</td>
@@ -26,7 +26,7 @@ function CheckOutStatsDetail ({stat}){
                 </button>
 
 
-            </td> */}
+            </td>
         </tr>
     )
 }

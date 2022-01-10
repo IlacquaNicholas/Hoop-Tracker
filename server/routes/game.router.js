@@ -46,7 +46,7 @@ router.post('/', (req, res)=>{
 
 router.get ('/', (req, res)=>{
     
-console.log('In GET /game', req.params.id);
+console.log('In GET /game', req.user.id);
 
     const sqlText = `
     SELECT 
@@ -71,10 +71,10 @@ console.log('In GET /game', req.params.id);
     	    ON "stats"."playerName_id"="playerName"."id"
     WHERE "stats"."id" = $1;
     `;
-    pool.query(sqlText, [req.params.id])
+    pool.query(sqlText, [req.user.id])
     .then((dbRes)=>{
-        console.log('#########In GET /game', dbRes.rows);
-        res.send(dbRes.rows)
+        console.log('#########In GET /game', dbRes.rows[0]);
+        res.send(dbRes.rows[0])
         // let gameDisplay = {}
         // gameDisplay.three_made = dbRes.rows[0].three_made;
         // gameDisplay.three_missed = dbRes.rows[0].three_missed;
