@@ -50,6 +50,7 @@ console.log('In GET /game', req.user.id);
 
     const sqlText = `
     SELECT 
+        "stats"."game_id",
         "stats"."three_made",
         "stats"."three_missed",
         "stats"."two_made",
@@ -103,36 +104,42 @@ console.log('In GET /game', req.user.id);
 })
 
 
-// router.put ('/', (req, res)=>{
-//     console.log('In Put /stats', req.body);
-//     console.log('In Put /stats', req.params);
-//     const statsId = req.params.id;
-//     const threeMade = req.body.three_made;
-//     const threeMissed = req.body.three_missed;
-//     const rebounds = req.body.rebounds;
-//     const sqlText = `
-//     UPDATE "stats"
-//     SET
-//         "three_made"=$1, 
-//         "three_missed"=$2, 
-//         "rebounds"=$3,
-//     WHERE "id" = $4
-//     `;
-//     const sqlValues = [
-//         threeMade, 
-//         threeMissed, 
-//         rebounds, 
-//         statsId
-//     ]
-//     pool.query(sqlText, sqlValues)
-//     .then ((dbRes)=>{
-//         res.sendStatus(201)
-//     })
-//     .catch((dbErr)=>{
-//         console.log('In Put Error', dbErr);
-//         res.sendStatus(500)
-//     })    
-// })
+router.put ('/:id', (req, res)=>{
+    console.log('In Put /stats', req.body);
+    console.log('In Put /stats', req.params);
+    const sqlText = `
+    UPDATE "stats"
+    SET
+        "three_made"=$1, 
+        "three_missed"=$2,
+        "two_made"=$3,
+        "two_miss"=$4,
+        "rebounds"=$5,
+        "assists"=$6,
+        "blocks"=$7,
+        "steals"=$8, 
+    WHERE "id" = $9
+    `;
+    const sqlValues = [
+        req.body.three_made,
+        req.body.three_missed,
+        req.body.two_made,
+        req.body.two_miss,
+        req.body.rebounds,
+        req.body.assists,
+        req.body.blocks,
+        req.body.steals,
+        req.params.id
+    ]
+    pool.query(sqlText, sqlValues)
+    .then ((dbRes)=>{
+        res.sendStatus(201)
+    })
+    .catch((dbErr)=>{
+        console.log('In Put Error', dbErr);
+        res.sendStatus(500)
+    })    
+})
 
 
 

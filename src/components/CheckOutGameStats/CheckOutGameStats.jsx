@@ -3,10 +3,10 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import CheckOutStatsDetail from '../CheckOutStatsDetail/CheckOutStatsDetail';
-
 
 function CheckOutGameStats() {
+
+    // const [gameId, setGameId] = useState(0);
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -18,9 +18,21 @@ function CheckOutGameStats() {
         })
     }, [])
 
+    // function chooseGame(event) {
+    //     event.preventDefault();
+    //     setGameId(event.target.value);
+    // };
+
 
     return(
         <div>
+            {/* <select value={gameId} onChange={(e) => setGameId(e.target.value)}>
+                <option disabled value= '0'>Select Game Number</option>
+                {displayStatsReducer.map((stat) => {
+                    return( 
+                    <option key={stat.id} value={stat.id}>{stat.game_id}</option>
+                )})}
+            </select> */}
             <h1>Lets see the stats for a game!</h1>
             <div>
                 <div>
@@ -54,7 +66,7 @@ function CheckOutGameStats() {
                             <td>{displayStatsReducer.steals}</td>
                             <td>
                                 <button
-                                    onClick={() => history.push(`/edit/${stat.id}`)}>
+                                    onClick={() => history.push(`/edit/:id`)}>
                                     Edit
                                 </button>
                             </td>

@@ -1,4 +1,4 @@
-const displayStatsReducer = (state = {}, action) => {
+const displayStatsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SET_DISPLAY_STATS':
             return action.payload;
