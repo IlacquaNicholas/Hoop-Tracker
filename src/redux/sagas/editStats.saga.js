@@ -7,7 +7,6 @@ function* fetchPlayerStats(action) {
             method: 'GET',
             url: `/editStats/${action.payload}`
         })
-        console.log('fetchPlayerStats response.data', response.data);
         const editStats = response.data;
         yield put({
             type: 'SET_EDIT_STATS',

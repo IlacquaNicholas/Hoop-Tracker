@@ -27,7 +27,7 @@ function EditStats(){
                 three_made: statsToEdit.three_made,
                 three_missed: statsToEdit.three_missed,
                 two_made: statsToEdit.two_made,
-                two_made: statsToEdit.two_made,
+                two_miss: statsToEdit.two_miss,
                 rebounds: statsToEdit.rebounds,
                 assists: statsToEdit.assists,
                 blocks: statsToEdit.blocks,
@@ -35,59 +35,103 @@ function EditStats(){
             }
         })
         history.push('/seeGameStats');
-        console.log('handleUpdateSubmit payload', payload);
+    }
+    const handleThreeMade = (e)=>{
+        dispatch({
+            type:'SET_THREE_MADE',
+            payload: e.target.value
+        })
+    }
+    const handleThreeMiss = (e) => {
+        dispatch({
+            type: 'SET_THREE_MISSED',
+            payload: e.target.value
+        })
+    }
+    const handleTwoMade = (e) => {
+        dispatch({
+            type: 'SET_TWO_MADE',
+            payload: e.target.value
+        })
+    }
+    const handleTwoMiss = (e) => {
+        dispatch({
+            type: 'SET_TWO_MISS',
+            payload: e.target.value
+        })
+    }
+    const handleRebounds = (e) => {
+        dispatch({
+            type: 'SET_REBOUNDS',
+            payload: e.target.value
+        })
+    }
+    const handleAssists = (e) => {
+        dispatch({
+            type: 'SET_ASSISTS',
+            payload: e.target.value
+        })
+    }
+    const handleBlocks = (e) => {
+        dispatch({
+            type: 'SET_BLOCKS',
+            payload: e.target.value
+        })
+    }
+    const handleSteals = (e) => {
+        dispatch({
+            type: 'SET_STEALS',
+            payload: e.target.value
+        })
     }
 
     return(
         <div>
             <h2>Edit Stats:</h2>
             <form>
+                <h4>3pt Made</h4>
                 <input
-                placeholder = '3pt Made'
-                value={statsToEdit.three_made}
-                />
+                    placeholder = '3pt Made'
+                    value={statsToEdit.three_made || ''}
+                    onChange={handleThreeMade}/>
+                <h4>3pt Missed</h4> 
                 <input
                     placeholder='3pt Missed'
-                    value={statsToEdit.three_missed}/>
+                    value={statsToEdit.three_missed || ''}
+                    onChange = {handleThreeMiss}/>
+                <h4>2pt Missed</h4> 
                 <input
                     placeholder='2pt Made'
-                    value={statsToEdit.two_made}/>
+                    value={statsToEdit.two_made || ''}
+                    onChange={handleTwoMade}/>
+                <h4>2pt Missed</h4> 
                 <input
                     placeholder='2pt Missed'
-                    value={statsToEdit.two_miss}/>
+                    value={statsToEdit.two_miss || ''}
+                    onChange={handleTwoMiss}/>
+                <h4>3pt Rebounds</h4> 
                 <input
                     placeholder='Rebounds'
-                    value={statsToEdit.rebounds}/>
+                    value={statsToEdit.rebounds || ''}
+                    onChange={handleRebounds}/>
+                <h4>Assists</h4> 
                 <input
                     placeholder='Assists'
-                    value={statsToEdit.assists}/>
+                    value={statsToEdit.assists || ''}
+                    onChange={handleAssists}/>
+                <h4>Blocks</h4> 
                 <input
                     placeholder='Blocks'
-                    value={statsToEdit.blocks}/>
+                    value={statsToEdit.blocks || ''}
+                    onChange={handleBlocks}/>
+                <h4>Steals</h4> 
                 <input
                     placeholder='Steals'
-                    value={statsToEdit.steals}/>
-                <button onClick={handleUpdateSubmit}>Update</button>
+                    value={statsToEdit.steals}
+                    onChange={handleSteals}/>
             </form>
-                <button
-                    onClick={() => history.push('/seeGameStats')}>Cancel</button>
-                {/* <table>
-                    <thead>
-                        <tr>
-                            <th>Players</th>
-                            <th>3pt Made</th>
-                            <th>3pt Missed</th>
-                            <th>2pt Made</th>
-                            <th>2pt Missed</th>
-                            <th>Reb</th>
-                            <th>Ast</th>
-                            <th>Blks</th>
-                            <th>Stl</th>
-                        </tr> */}
-                                
-                                    
-            
-
+                <button onClick={handleUpdateSubmit}>Update</button>
+                <button onClick={() => history.push('/seeGameStats')}>Cancel</button>
         </div>
     )
     

@@ -11,6 +11,23 @@ const editStatsReducer = (state={}, action)=>{
         blocks: action.payload.blocks,
         steals: action.payload.steals,
     }
+        case 'SET_THREE_MADE':
+            return{...state , three_made:action.payload}
+        case 'SET_THREE_MISSED':
+            return { ...state, three_missed: action.payload }
+        case 'SET_TWO_MADE':
+            return { ...state, two_made: action.payload }
+        case 'SET_TWO_MISS':
+            return { ...state, two_miss: action.payload }
+        case 'SET_REBOUNDS':
+            return { ...state, rebounds: action.payload }
+        case 'SET_ASSISTS':
+            return { ...state, assists: action.payload }
+        case 'SET_BLOCKS':
+            return { ...state, blocks: action.payload }
+        case 'SET_STEALS':
+            return { ...state, steals: action.payload }
+            
     default:
         return state;
 }   
