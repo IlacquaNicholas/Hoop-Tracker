@@ -18,6 +18,25 @@ function EditStats(){
             payload: params.id
         })
     }, [])
+    const handleUpdateSubmit = (e) => {
+        e.preventDefault();
+        dispatch({
+            type: 'SAGA_EDIT_GAME_STATS',
+            payload: {
+                id: params.id,
+                three_made: statsToEdit.three_made,
+                three_missed: statsToEdit.three_missed,
+                two_made: statsToEdit.two_made,
+                two_made: statsToEdit.two_made,
+                rebounds: statsToEdit.rebounds,
+                assists: statsToEdit.assists,
+                blocks: statsToEdit.blocks,
+                steals: statsToEdit.steals
+            }
+        })
+        history.push('/');
+    }
+
     return(
         <div>
             <h2>Edit Stats:</h2>
@@ -47,7 +66,7 @@ function EditStats(){
                 <input
                     placeholder='Steals'
                     value={statsToEdit.steals}/>
-                <button>Update</button>
+                <button onClick={handleUpdateSubmit}>Update</button>
             </form>
                 <button
                     onClick={() => history.push('/seeGameStats')}>Cancel</button>

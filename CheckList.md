@@ -17,8 +17,11 @@
     [x] create a reducer for the game ids 
     [x] dispatch that saga
     [x] should be able to map through that reducer with a drop down
-    []
 
-[] need an edit button
-    []need a route for the edit function
+[x] need an edit button
+    []Figure out the parameter to give the /edit/${ ? }, maybe e.id? Which means but it in a function?
+    []create a new router if haven't yet.
+    [] reducer and saga is created but the saga might need to be updated with the get route
+    []need a PUT and a get route for the Edit function
+    [] watch video after 22 mins to see what else needs to be done
     [] 

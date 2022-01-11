@@ -77,7 +77,7 @@ function CheckOutGameStats() {
                                 {/* //need to figure out what the Params.id should
                                 //be after /edit/${ ? } */}
                                 <button
-                                    onClick={() => history.push(`/edit/${params.id}`)}>
+                                    onClick={() => history.push(`/edit/${displayStatsReducer.game_id}`)}>
                                     Edit
                                 </button>
                             </td>

@@ -79,7 +79,7 @@ router.get('/:id', (req,res) =>{
     ]
     pool.query(sqlText, sqlValues)
     .then ((dbRes)=>{
-        console.log('dbRes.rows', dbRes.rows);
+        console.log('dbRes.rows', dbRes.rows[0]);
         
         res.send(dbRes.rows[0])
     })
