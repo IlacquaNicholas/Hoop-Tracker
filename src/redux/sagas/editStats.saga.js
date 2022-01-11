@@ -2,7 +2,10 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* fetchPlayerStats(action) {
+    console.log('in FETCHPlayerStats action.payload', action.payload);
     try {
+        
+        
         const response = yield axios({
             method: 'GET',
             url: `/editStats/${action.payload}`
@@ -27,7 +30,9 @@ function* editGameStats(action) {
             data: action.payload
         })
         yield put({
-            type: 'SAGA_FETCH_PLAYER_STATS'
+            type: 'SAGA_FETCH_PLAYER_STATS',
+            payload: action.payload.id
+            
         })
     } catch (err) {
         console.log(err)

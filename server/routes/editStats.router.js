@@ -3,6 +3,8 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/:id', (req, res)=>{
+    console.log('@@@@@@ in GET/editStats', req.params.id);
+    
     const sqlText = `
     SELECT 
         "stats"."three_made",
@@ -54,7 +56,7 @@ router.put('/:id', (req, res) => {
         req.body.assists,
         req.body.blocks,
         req.body.steals,
-        req.params.game_id
+        req.params.id
     ]
     pool.query(sqlText, sqlValues)
         .then((dbRes) => {

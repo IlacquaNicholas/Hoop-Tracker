@@ -11,19 +11,21 @@ function EditStats(){
     const history = useHistory();
     const dispatch = useDispatch();
     const statsToEdit = useSelector((store) => store.editStatsReducer)
-
+    let idPayload = Number(params.id)
     useEffect(() => {
         dispatch({
             type:'SAGA_FETCH_PLAYER_STATS',
-            payload: params.id
+            payload: idPayload
         })
-    }, [])
+    }, [idPayload])
+    console.log('idPayload', idPayload)
+
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
         dispatch({
             type: 'SAGA_EDIT_GAME_STATS',
             payload: {
-                id: params.id,
+                id: Number(params.id),
                 three_made: statsToEdit.three_made,
                 three_missed: statsToEdit.three_missed,
                 two_made: statsToEdit.two_made,
@@ -34,12 +36,13 @@ function EditStats(){
                 steals: statsToEdit.steals
             }
         })
-        history.push('/seeGameStats');
+        // history.push('/seeGameStats');
     }
     const handleThreeMade = (e)=>{
+        let three = Number(e.target.value)
         dispatch({
             type:'SET_THREE_MADE',
-            payload: e.target.value
+            payload: three
         })
     }
     const handleThreeMiss = (e) => {
@@ -92,42 +95,42 @@ function EditStats(){
                 <h4>3pt Made</h4>
                 <input
                     placeholder = '3pt Made'
-                    value={statsToEdit.three_made || ''}
+                    value={statsToEdit.three_made || 0}
                     onChange={handleThreeMade}/>
                 <h4>3pt Missed</h4> 
                 <input
                     placeholder='3pt Missed'
-                    value={statsToEdit.three_missed || ''}
+                    value={statsToEdit.three_missed || 0}
                     onChange = {handleThreeMiss}/>
                 <h4>2pt Missed</h4> 
                 <input
                     placeholder='2pt Made'
-                    value={statsToEdit.two_made || ''}
+                    value={statsToEdit.two_made || 0}
                     onChange={handleTwoMade}/>
                 <h4>2pt Missed</h4> 
                 <input
                     placeholder='2pt Missed'
-                    value={statsToEdit.two_miss || ''}
+                    value={statsToEdit.two_miss || 0}
                     onChange={handleTwoMiss}/>
                 <h4>3pt Rebounds</h4> 
                 <input
                     placeholder='Rebounds'
-                    value={statsToEdit.rebounds || ''}
+                    value={statsToEdit.rebounds || 0}
                     onChange={handleRebounds}/>
                 <h4>Assists</h4> 
                 <input
                     placeholder='Assists'
-                    value={statsToEdit.assists || ''}
+                    value={statsToEdit.assists || 0}
                     onChange={handleAssists}/>
                 <h4>Blocks</h4> 
                 <input
                     placeholder='Blocks'
-                    value={statsToEdit.blocks || ''}
+                    value={statsToEdit.blocks || 0}
                     onChange={handleBlocks}/>
                 <h4>Steals</h4> 
                 <input
                     placeholder='Steals'
-                    value={statsToEdit.steals}
+                    value={statsToEdit.steals|| 0}
                     onChange={handleSteals}/>
             </form>
                 <button onClick={handleUpdateSubmit}>Update</button>
