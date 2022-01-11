@@ -13,6 +13,7 @@ const playerRouter = require('./routes/player.router')
 const courtRouter = require('./routes/court.router')
 const statsRouter = require('./routes/stats.router')
 const gameIdRouter = require('./routes/gameId.router')
+const editStatsRouter = require('./routes/editStats.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/addPlayer', playerRouter);
 app.use('/courtName', courtRouter);
 app.use('/stats', statsRouter);
 app.use('/gameId', gameIdRouter);
+app.use('/editStats', editStatsRouter);
 // Serve static files
 app.use(express.static('build'));
 

@@ -43,6 +43,7 @@ function CheckOutGameStats() {
             <h1>Lets see the stats for a game!</h1>
             <div>
                 <div>
+                    <p>Game #:{displayStatsReducer.game_id}</p>
                     <p>Court: {displayStatsReducer.name}</p>
                 </div>
                 <table>
@@ -80,7 +81,7 @@ function CheckOutGameStats() {
                     </tbody>
                 </table>
                 <div>
-                    <p>Comments on the Game:{displayStatsReducer.comments}</p>
+                    <h3>Comments on the Game:{displayStatsReducer.comments}</h3>
                 </div>
             </div>
 
