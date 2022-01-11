@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import CheckOutStatsDetail from '../CheckOutStatsDetail/CheckOutStatsDetail';
 
 function CheckOutGameStats() {
 
+    const params = useParams();    
     const [gameId, setGameId] = useState(0);
 
     const history = useHistory();
@@ -72,8 +74,10 @@ function CheckOutGameStats() {
                             <td>{displayStatsReducer.blocks}</td>
                             <td>{displayStatsReducer.steals}</td>
                             <td>
+                                {/* //need to figure out what the Params.id should
+                                //be after /edit/${ ? } */}
                                 <button
-                                    onClick={() => history.push(`/edit/:id`)}>
+                                    onClick={() => history.push(`/edit/${params.id}`)}>
                                     Edit
                                 </button>
                             </td>
