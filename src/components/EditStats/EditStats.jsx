@@ -34,7 +34,8 @@ function EditStats(){
                 steals: statsToEdit.steals
             }
         })
-        history.push('/');
+        history.push('/seeGameStats');
+        console.log('handleUpdateSubmit payload', payload);
     }
 
     return(

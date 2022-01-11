@@ -22,7 +22,7 @@ router.get('/:id', (req, res)=>{
     pool.query(sqlText, sqlValues)
     .then((dbRes) => {
         console.log('in Get /editStats dbRes.rows', dbRes.rows);
-        res.send(dbRes.rows)
+        res.send(dbRes.rows[0])
     })
     .catch((dbErr) => {
         console.log('in GET edit /stats err', dbErr);
@@ -42,7 +42,7 @@ router.put('/:id', (req, res) => {
         "rebounds"=$5,
         "assists"=$6,
         "blocks"=$7,
-        "steals"=$8, 
+        "steals"=$8 
     WHERE "game_id" = $9
     `;
     const sqlValues = [
