@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import './InfoPage.css';
 
 
@@ -140,7 +141,7 @@ function InfoPage() {
           <tbody>
             <tr>
               {playerReducer.map((player) => {
-                return <tr key={player.id} value={player.id}> {player.player_name}</tr>
+                return <td key={player.id} value={player.id}> {player.player_name}</td>
               })}
               <td><button onClick={onMadeThree}>Made</button></td>
               <td><button onClick={onMissedThree}>Missed</button></td>
@@ -154,12 +155,19 @@ function InfoPage() {
           </tbody>
         </table>
         <div>
-          <textarea
+          <TextareaAutosize
+            aria-label="empty textarea"
+            value={commentInput}
+            placeholder="Comments about the game"
+            onChange={(event) => { setCommentInput(event.target.value) }}
+            style={{ width: 200 }}
+          />
+          {/* <textarea
             value={commentInput}
             type='text'
             onChange={(event) => {setCommentInput(event.target.value) }}
             placeholder="Comments about the game"
-          />
+          /> */}
           <button onClick={handleSubmitGame}>Submit the Game</button>
         </div>
       </div>

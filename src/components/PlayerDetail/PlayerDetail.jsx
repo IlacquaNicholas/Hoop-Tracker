@@ -21,10 +21,7 @@ function PlayerDetail ({player}){
             <td>{player.team_name}</td>
             <td>{player.player_name}</td>
             <td>
-                
-                <button 
-                href="something" class="bouncy"
-                onClick={() => deletePlayer(player.id)}>Delete</button>
+                <button onClick={() => deletePlayer(player.id)}>Delete</button>
             </td>
         </tr>
 

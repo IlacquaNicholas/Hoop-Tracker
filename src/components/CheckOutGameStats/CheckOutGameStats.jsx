@@ -5,6 +5,9 @@ import { useHistory} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import CheckOutStatsDetail from '../CheckOutStatsDetail/CheckOutStatsDetail';
 import swal from 'sweetalert';
+import { Box } from '@mui/material';
+import Fab from '@mui/material/Fab';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 function CheckOutGameStats() {
@@ -77,12 +80,14 @@ function CheckOutGameStats() {
                             <td>{displayStatsReducer.blocks}</td>
                             <td>{displayStatsReducer.steals}</td>
                             <td>
-                                {/* //need to figure out what the Params.id should
-                                //be after /edit/${ ? } */}
-                                <button
-                                    onClick={onEditClick}>
-                                    Edit
-                                </button>
+                                <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                                    <Fab
+                                        onClick={onEditClick}
+                                        style={{ backgroundColor: '#2ec4b6'}}
+                                        color="secondary" aria-label="edit">
+                                        <EditIcon />
+                                    </Fab>
+                                </Box>
                             </td>
                         </tr>
                     </tbody>

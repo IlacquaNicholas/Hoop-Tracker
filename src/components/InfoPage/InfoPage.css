@@ -1,14 +1,16 @@
 table {
   border-collapse: collapse;
-  border: 6px solid #2ec4b6;
+  border: 3px solid #e71d36;
   width: 100%;
 }
 
-th, td, tr {
-  text-align: left;
+th, td, tr, thead {
+  text-align: center;
   padding: 8px;
   background-color: #FF9F1C;
-  color: cbf3f0
+  color: #2ec4b6;
+  border: 3px solid #e71d36;
+  
 }
 
 tr:nth-child(even){background-color: grey}
