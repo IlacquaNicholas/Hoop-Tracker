@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import CheckOutStatsDetail from '../CheckOutStatsDetail/CheckOutStatsDetail';
+import swal from 'sweetalert';
+
 
 function CheckOutGameStats() {
 
@@ -24,19 +26,20 @@ function CheckOutGameStats() {
 
     function chooseGame(event) {
         event.preventDefault();
-        console.log('event.target.value', event.target.value);
-        // setGameId(event.target.value);
         dispatch({
             type: 'SAGA_FETCH_GAME_STATS',
             payload: event.target.value
         })
     };
 
+    const onEditClick=()=>{
+        history.push(`/edit/${displayStatsReducer.game_id}`)
+    }
 
     return(
         <div>
             <select value={gameId} onChange={chooseGame}>
-                <option disabled value= '0'>Select Game Number</option>
+                <option disabled value= '0'>Select date of Game</option>
                 {getGamesReducer.map((game) => {
                     return( 
                     <option key={game.id} value={game.id}>{game.date}</option>
@@ -77,7 +80,7 @@ function CheckOutGameStats() {
                                 {/* //need to figure out what the Params.id should
                                 //be after /edit/${ ? } */}
                                 <button
-                                    onClick={() => history.push(`/edit/${displayStatsReducer.game_id}`)}>
+                                    onClick={onEditClick}>
                                     Edit
                                 </button>
                             </td>

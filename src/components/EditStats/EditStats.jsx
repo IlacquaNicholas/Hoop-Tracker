@@ -1,6 +1,8 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import swal from 'sweetalert';
+
 
 function EditStats(){
 
@@ -11,21 +13,20 @@ function EditStats(){
     const history = useHistory();
     const dispatch = useDispatch();
     const statsToEdit = useSelector((store) => store.editStatsReducer)
-    let idPayload = Number(params.id)
+
     useEffect(() => {
         dispatch({
             type:'SAGA_FETCH_PLAYER_STATS',
-            payload: idPayload
+            payload: params.id
         })
-    }, [idPayload])
-    console.log('idPayload', idPayload)
+    }, [params.id])
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
         dispatch({
             type: 'SAGA_EDIT_GAME_STATS',
             payload: {
-                id: Number(params.id),
+                id: params.id,
                 three_made: statsToEdit.three_made,
                 three_missed: statsToEdit.three_missed,
                 two_made: statsToEdit.two_made,
@@ -33,16 +34,17 @@ function EditStats(){
                 rebounds: statsToEdit.rebounds,
                 assists: statsToEdit.assists,
                 blocks: statsToEdit.blocks,
-                steals: statsToEdit.steals
+                steals: statsToEdit.steals,
+                comments: statsToEdit.comments
             }
         })
-        // history.push('/seeGameStats');
+
+        history.push('/seeGameStats');
     }
     const handleThreeMade = (e)=>{
-        let three = Number(e.target.value)
         dispatch({
             type:'SET_THREE_MADE',
-            payload: three
+            payload: e.target.value
         })
     }
     const handleThreeMiss = (e) => {

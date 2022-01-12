@@ -3,18 +3,19 @@ import { useParams } from "react-router-dom"
 const editStatsReducer = (state={}, action)=>{
     switch (action.type){
         case 'SET_EDIT_STATS':
-            console.log('action.payload reducer', action.payload);
-        return action.payload
-    // return {
-    //     three_made: action.payload.three_made,
-    //     three_missed: action.payload.three_missed,
-    //     two_made: action.payload.two_made,
-    //     two_miss: action.payload.two_miss,
-    //     rebounds: action.payload.rebounds,
-    //     assists: action.payload.assists,
-    //     blocks: action.payload.blocks,
-    //     steals: action.payload.steals,
-    // }
+        //     console.log('action.payload reducer', action.payload);
+        // return action.payload
+    return {
+        three_made: action.payload.three_made,
+        three_missed: action.payload.three_missed,
+        two_made: action.payload.two_made,
+        two_miss: action.payload.two_miss,
+        rebounds: action.payload.rebounds,
+        assists: action.payload.assists,
+        blocks: action.payload.blocks,
+        steals: action.payload.steals,
+        comments:action.payload.comments
+    }
         case 'SAGA_EDIT_GAME_STATS':
             return action.payload
         case 'SET_THREE_MADE':
