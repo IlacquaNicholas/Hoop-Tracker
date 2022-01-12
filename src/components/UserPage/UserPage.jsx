@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import PlayerDetail from '../PlayerDetail/PlayerDetail';
+
 
 
 function UserPage() {
@@ -26,19 +28,10 @@ function UserPage() {
     })
   }
 
-  const deletePlayer = (player_id) => {
-    console.log(player_id);
-    dispatch({
-      type: 'SAGA_DELETE_PLAYER',
-      payload: player_id
-    })
-  }
   const onGetReadyClick = ()=>{
     history.push('/info')
   }
   
-
-
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
@@ -54,12 +47,19 @@ function UserPage() {
         <button onClick={onPlayerAdd}>Add Team/Player</button>
     </div>
     <div>
-      <p>List of players</p>
-      <ul>
-          {playerReducer.map((player) => {
-            return <li key={player.id}> {player.team_name} {player.player_name} <button onClick={() => deletePlayer(player.id)}>Delete</button></li>
+      <table>
+        <thead>
+          <tr>
+            <th>TEAM</th>
+            <th>PLAYER</th>
+          </tr>
+        </thead>
+        <tbody>
+            {playerReducer.map((player) => {
+            return <PlayerDetail key={player.id} player={player}/> 
         })}
-      </ul>
+        </tbody>
+      </table>
         <button onClick={onGetReadyClick}>Let the stat keeping begin!</button>
         <div>
       <LogOutButton className="btn" />
