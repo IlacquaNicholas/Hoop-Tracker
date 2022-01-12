@@ -1,6 +1,8 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
+import TextField from '@mui/material/TextField'
+import Box from '@mui/material/Box';
 
 import swal from 'sweetalert';
 
@@ -97,46 +99,70 @@ function EditStats(){
         <div>
             <h2>Edit Stats:</h2>
             <form>
-                <h4>3pt Made</h4>
-                <input
-                    placeholder = '3pt Made'
-                    value={statsToEdit.three_made || 0}
-                    onChange={handleThreeMade}/>
-                <h4>3pt Missed</h4> 
-                <input
-                    placeholder='3pt Missed'
-                    value={statsToEdit.three_missed || 0}
-                    onChange = {handleThreeMiss}/>
-                <h4>2pt Missed</h4> 
-                <input
-                    placeholder='2pt Made'
-                    value={statsToEdit.two_made || 0}
-                    onChange={handleTwoMade}/>
-                <h4>2pt Missed</h4> 
-                <input
-                    placeholder='2pt Missed'
-                    value={statsToEdit.two_miss || 0}
-                    onChange={handleTwoMiss}/>
-                <h4>3pt Rebounds</h4> 
-                <input
-                    placeholder='Rebounds'
-                    value={statsToEdit.rebounds || 0}
-                    onChange={handleRebounds}/>
-                <h4>Assists</h4> 
-                <input
-                    placeholder='Assists'
-                    value={statsToEdit.assists || 0}
-                    onChange={handleAssists}/>
-                <h4>Blocks</h4> 
-                <input
-                    placeholder='Blocks'
-                    value={statsToEdit.blocks || 0}
-                    onChange={handleBlocks}/>
-                <h4>Steals</h4> 
-                <input
-                    placeholder='Steals'
-                    value={statsToEdit.steals|| 0}
-                    onChange={handleSteals}/>
+                <TextField
+                    id="outlined-helperText"
+                    label="3pts Made"
+                    defaultValue="Default Value"
+                    helperText="Edit three pointers made"
+                    value={statsToEdit.three_made}
+                    onChange={handleThreeMade}
+                />
+                <TextField
+                    id="outlined-helperText"
+                    label="3pts Missed"
+                    defaultValue="Default Value"
+                    helperText="Edit three pointers missed"
+                    value={statsToEdit.three_missed}
+                    onChange={handleThreeMiss}
+                />
+                <TextField
+                    id="outlined-helperText"
+                    label="2pts Made"
+                    defaultValue="Default Value"
+                    helperText="Edit two pointers made"
+                    value={statsToEdit.two_made}
+                    onChange={handleTwoMade}
+                />
+                <TextField
+                    id="outlined-helperText"
+                    label="2pts Missed"
+                    defaultValue="Default Value"
+                    helperText="Edit two pointers missed"
+                    value={statsToEdit.two_miss}
+                    onChange={handleTwoMiss}
+                />
+                <TextField
+                    id="outlined-helperText"
+                    label="Rebounds"
+                    defaultValue="Default Value"
+                    helperText="Edit rebounds"
+                    value={statsToEdit.rebounds}
+                    onChange={handleRebounds}
+                />
+                <TextField
+                    id="outlined-helperText"
+                    label="Assists"
+                    defaultValue="Default Value"
+                    helperText="Edit assists"
+                    value={statsToEdit.assists}
+                    onChange={handleAssists}
+                />
+                <TextField
+                    id="outlined-helperText"
+                    label="Blocks"
+                    defaultValue="Default Value"
+                    helperText="Edit blocks"
+                    value={statsToEdit.blocks}
+                    onChange={handleBlocks}
+                />
+                <TextField
+                    id="outlined-helperText"
+                    label="Steals"
+                    defaultValue="Default Value"
+                    helperText="Edit steals"
+                    value={statsToEdit.steals}
+                    onChange={handleSteals}
+                />
             </form>
                 <button onClick={handleUpdateSubmit}>Update</button>
                 <button onClick={() => history.push('/seeGameStats')}>Cancel</button>
