@@ -26,21 +26,6 @@ function CheckOutGameStats() {
             type:'SAGA_FETCH_GAMES'
         })
     }, [])
-    const totalPointsScored=()=>{
-        console.log('points', points);
-        let points = []
-        let twoPoints = displayStatsReducer.two_made;
-        let threePoints = displayStatsReducer.three_made;
-        let totalThrees = threePoints * 3;
-        let totalTwos = twoPoints * 2;
-        let totalPoints = totalTwos + totalThrees
-        points.push(totalPoints)
-        let total = 0;
-        for (let i = 0; i < points.length; i++) {
-            total += points[i];
-        }
-        return total
-    }
 
     function chooseGame(event) {
         event.preventDefault();
@@ -93,7 +78,7 @@ function CheckOutGameStats() {
                             <td>{displayStatsReducer.three_missed}</td>
                             <td>{displayStatsReducer.two_made}</td>
                             <td>{displayStatsReducer.two_miss}</td>
-                            <td>{totalPointsScored()}</td>
+                            <td>{displayStatsReducer.total_points}</td>
                             <td>{displayStatsReducer.rebounds}</td>
                             <td>{displayStatsReducer.assists}</td>
                             <td>{displayStatsReducer.blocks}</td>

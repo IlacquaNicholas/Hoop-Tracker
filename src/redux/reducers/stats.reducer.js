@@ -12,8 +12,6 @@ rebounds:0, assists:0, blocks:0, steals:0 }, action) => {
             return { ...state, two_made: state.two_made + 1 }
         case 'SET_TWO_MISS'://Will I need one for each stat being taken? 
             return { ...state, two_miss: state.two_miss + 1 }
-        case 'SET_TOTAL_POINTS':
-            return{...state, total_points: state.two_made * 2, total_points: state.three_made * 3}
         case 'SET_REBOUNDS'://Will I need one for each stat being taken? 
             return { ...state, rebounds: state.rebounds + 1 }
         case 'SET_ASSISTS'://Will I need one for each stat being taken? 
