@@ -57,15 +57,16 @@ function CheckOutGameStats() {
                 <table>
                     <thead>
                         <tr>
-                            <th>Players</th>
-                            <th>3pt Made</th>
-                            <th>3pt Missed</th>
-                            <th>2pt Made</th>
-                            <th>2pt Missed</th>
-                            <th>Reb</th>
-                            <th>Ast</th>
-                            <th>Blks</th>
-                            <th>Stl</th>
+                            <th>PLAYERS</th>
+                            <th>3PT MADE</th>
+                            <th>3PT MISSED</th>
+                            <th>2PT MADE</th>
+                            <th>2PT MISSED</th>
+                            <th>REB</th>
+                            <th>AST</th>
+                            <th>BLKS</th>
+                            <th>STLS</th>
+                            <th>EDIT</th>
                         </tr>
                     </thead>
                     <tbody>

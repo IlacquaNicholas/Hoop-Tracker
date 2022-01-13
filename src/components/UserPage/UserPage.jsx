@@ -52,6 +52,7 @@ function UserPage() {
           <tr>
             <th>TEAM</th>
             <th>PLAYER</th>
+            <th>DELETE</th>
           </tr>
         </thead>
         <tbody>
