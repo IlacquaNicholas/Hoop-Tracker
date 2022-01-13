@@ -26,6 +26,13 @@ function CheckOutGameStats() {
             type:'SAGA_FETCH_GAMES'
         })
     }, [])
+    // const totalPointsScored=()=>{
+    //     let points = []
+    //     let twoPoints = displayStatsReducer.two_made * 2
+    //     let threePoints = displayStatsReducer.three_made * 3
+    //     let totalPoints = twoPoints + threePoints
+    //     points.push(totalPoints)
+    // }
 
     function chooseGame(event) {
         event.preventDefault();
@@ -63,6 +70,7 @@ function CheckOutGameStats() {
                             <th>3PT MISSED</th>
                             <th>2PT MADE</th>
                             <th>2PT MISSED</th>
+                            {/* <th>TOTAL POINTS</th> */}
                             <th>REBOUNDS</th>
                             <th>ASSISTS</th>
                             <th>BLOCKS</th>
@@ -77,6 +85,7 @@ function CheckOutGameStats() {
                             <td>{displayStatsReducer.three_missed}</td>
                             <td>{displayStatsReducer.two_made}</td>
                             <td>{displayStatsReducer.two_miss}</td>
+                            {/* <td>{totalPointsScored}</td> */}
                             <td>{displayStatsReducer.rebounds}</td>
                             <td>{displayStatsReducer.assists}</td>
                             <td>{displayStatsReducer.blocks}</td>
