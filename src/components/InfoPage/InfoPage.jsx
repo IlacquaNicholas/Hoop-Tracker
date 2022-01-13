@@ -15,6 +15,15 @@ function InfoPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [threeMade, setThreeMade]=useState(0)
+  const [threeMissed, setThreeMissed] = useState(0)
+  const [twoMade, setTwoMade] = useState(0)
+  const [twoMissed, setTwoMissed] = useState(0)
+  const [rebounds, setRebounds] = useState(0)
+  const [assists, setAssists] = useState(0)
+  const [blocks, setBlocks] = useState(0)
+  const [steals, setSteals] = useState(0)
+
   const [commentInput, setCommentInput] = useState('')
   const [dateInput, setDateInput] = useState('');
   const[courtId, setCourtID] = useState(0);
@@ -43,50 +52,56 @@ function InfoPage() {
     dispatch({
       type: 'SET_THREE_MADE',
     })
+    setThreeMade(threeMade +1)
   }
   const onMissedThree = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_THREE_MISSED',
-
     })
+    setThreeMissed(threeMissed + 1)
   }
   const onMadeTwo = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_TWO_MADE',
     })
+    setTwoMade(twoMade + 1)
   }
   const onMissedTwo = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_TWO_MISS',
     })
+    setTwoMissed(twoMissed + 1)
   }
   const onRebound = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_REBOUNDS',
-      
     })
+    setRebounds(rebounds + 1)
   }
   const onAssists = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_ASSISTS',
     })
+    setAssists(assists + 1)
   }
   const onBlock = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_BLOCKS',
     })
+    setBlocks(blocks + 1)
   }
   const onSteal = (e) => {
     e.preventDefault();
     dispatch({
       type: 'SET_STEALS',
     })
+    setSteals(steals + 1)
   }
   const handleSubmitGame = (e)=>{
     e.preventDefault();
@@ -127,15 +142,15 @@ function InfoPage() {
         <table>
           <thead>
             <tr>
-              <th>Players</th>
-              <th>3pt Made</th>
-              <th>3pt Missed</th>
-              <th>2pt Made</th>
-              <th>2pt Missed</th>
-              <th>Reb</th>
-              <th>Ast</th>
-              <th>Blks</th>
-              <th>Stl</th>
+              <th>PLAYERS</th>
+              <th>3PT MADE</th>
+              <th>3PT MISSED</th>
+              <th>2PT MADE</th>
+              <th>2PT MISSED</th>
+              <th>REBOUNDS</th>
+              <th>ASSISTS</th>
+              <th>BLOCKS</th>
+              <th>STEALS</th>
             </tr>
           </thead>
           <tbody>
@@ -143,14 +158,14 @@ function InfoPage() {
               {playerReducer.map((player) => {
                 return <td key={player.id} value={player.id}> {player.player_name}</td>
               })}
-              <td><button onClick={onMadeThree}>Made</button></td>
-              <td><button onClick={onMissedThree}>Missed</button></td>
-              <td><button onClick={onMadeTwo}>Made</button></td>
-              <td><button onClick={onMissedTwo}>Missed</button></td>
-              <td><button onClick={onRebound}>Add Reb</button></td>
-              <td><button onClick={onAssists}>Add Ast</button></td>
-              <td><button onClick={onBlock}>Add Blk</button></td>
-              <td><button onClick={onSteal}>Add Stl</button></td>
+              <td><button onClick={onMadeThree}>Made : {threeMade}</button></td>
+              <td><button onClick={onMissedThree}>Missed : {threeMissed}</button></td>
+              <td><button onClick={onMadeTwo}>Made : {twoMade}</button></td>
+              <td><button onClick={onMissedTwo}>Missed : {twoMissed}</button></td>
+              <td><button onClick={onRebound}>Add Reb : {rebounds}</button></td>
+              <td><button onClick={onAssists}>Add Ast : {assists}</button></td>
+              <td><button onClick={onBlock}>Add Blk : {blocks}</button></td>
+              <td><button onClick={onSteal}>Add Stl : {steals}</button></td>
             </tr>
           </tbody>
         </table>

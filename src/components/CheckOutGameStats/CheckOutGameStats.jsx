@@ -62,10 +62,10 @@ function CheckOutGameStats() {
                             <th>3PT MISSED</th>
                             <th>2PT MADE</th>
                             <th>2PT MISSED</th>
-                            <th>REB</th>
-                            <th>AST</th>
-                            <th>BLKS</th>
-                            <th>STLS</th>
+                            <th>REBOUNDS</th>
+                            <th>ASSISTS</th>
+                            <th>BLOCKS</th>
+                            <th>STEALS</th>
                             <th>EDIT</th>
                         </tr>
                     </thead>
