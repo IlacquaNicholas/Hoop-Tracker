@@ -12,6 +12,7 @@ router.get('/:id', (req, res)=>{
         "stats"."two_made",
         "stats"."two_miss",
         "stats"."rebounds",
+        "stats"."total_points",
         "stats"."assists",
         "stats"."blocks",
         "stats"."steals",
@@ -44,17 +45,19 @@ router.put('/:id', (req, res) => {
         "three_missed"=$2,
         "two_made"=$3,
         "two_miss"=$4,
-        "rebounds"=$5,
-        "assists"=$6,
-        "blocks"=$7,
-        "steals"=$8 
-    WHERE "game_id" = $9
+        "total_points"=$5,
+        "rebounds"=$6,
+        "assists"=$7,
+        "blocks"=$8,
+        "steals"=$9 
+    WHERE "game_id" = $10
     `;
     const sqlValues = [
         req.body.three_made,
         req.body.three_missed,
         req.body.two_made,
         req.body.two_miss,
+        req.body.total_points,
         req.body.rebounds,
         req.body.assists,
         req.body.blocks,

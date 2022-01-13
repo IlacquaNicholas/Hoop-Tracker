@@ -29,6 +29,9 @@ function EditStats(){
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
+        let totalThrees = statsToEdit.three_made * 3;
+        let totalTwos = statsToEdit.two_made * 2;
+        let totalPts = totalThrees + totalTwos
         dispatch({
             type: 'SAGA_EDIT_GAME_STATS',
             payload: {
@@ -37,6 +40,7 @@ function EditStats(){
                 three_missed: statsToEdit.three_missed,
                 two_made: statsToEdit.two_made,
                 two_miss: statsToEdit.two_miss,
+                total_points: totalPts,
                 rebounds: statsToEdit.rebounds,
                 assists: statsToEdit.assists,
                 blocks: statsToEdit.blocks,

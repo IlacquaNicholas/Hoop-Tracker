@@ -10,6 +10,7 @@ const editStatsReducer = (state={}, action)=>{
         three_missed: action.payload.three_missed,
         two_made: action.payload.two_made,
         two_miss: action.payload.two_miss,
+        total_points:action.payload.total_points,
         rebounds: action.payload.rebounds,
         assists: action.payload.assists,
         blocks: action.payload.blocks,
