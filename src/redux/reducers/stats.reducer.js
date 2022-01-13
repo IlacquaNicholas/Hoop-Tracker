@@ -1,7 +1,7 @@
 
 
 
-const statsReducer = (state = {three_made:0, three_missed:0,two_made:0, two_miss:0,
+const statsReducer = (state = {three_made:0, three_missed:0,two_made:0, two_miss:0,total_points:0,
 rebounds:0, assists:0, blocks:0, steals:0 }, action) => {
     switch (action.type) {
         case 'SET_THREE_MADE'://Will I need one for each stat being taken? 

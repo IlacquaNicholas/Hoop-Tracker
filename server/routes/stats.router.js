@@ -15,9 +15,9 @@ router.post('/', (req, res)=>{
         const createdGameId = result.rows[0].id;
         const insertStatData = `
         INSERT INTO "stats"
-        ("playerName_id", "game_id", "three_made", "three_missed", "two_made", "two_miss", "rebounds", "assists", "blocks", "steals")
+        ("playerName_id", "game_id", "three_made", "three_missed", "two_made", "two_miss","total_points", "rebounds", "assists", "blocks", "steals")
         VALUES
-        ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
+        ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);
         `;
         const statData = req.body;
         const sqlValues = [
@@ -27,6 +27,7 @@ router.post('/', (req, res)=>{
             statData.three_missed,
             statData.two_made,
             statData.two_miss, 
+            statData.total_points,
             statData.rebounds,
             statData.assists,
             statData.blocks,
@@ -57,6 +58,7 @@ router.get('/:id', (req,res) =>{
         "stats"."three_missed",
         "stats"."two_made",
         "stats"."two_miss",
+        "stats"."total_points",
         "stats"."rebounds",
         "stats"."assists",
         "stats"."blocks",

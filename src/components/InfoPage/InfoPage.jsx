@@ -105,6 +105,11 @@ function InfoPage() {
   }
   const handleSubmitGame = (e)=>{
     e.preventDefault();
+    let totalThrees = statsReducer.three_made *3;
+    let totalTwos = statsReducer.two_made *2;
+    let totalPts = totalThrees + totalTwos
+    console.log('TOTAL PTS', totalPts);
+
     dispatch({
       type:'SAGA_ADD_GAME_STATS',
       payload:{
@@ -114,7 +119,7 @@ function InfoPage() {
         three_missed: statsReducer.three_missed,
         two_made: statsReducer.two_made,
         two_miss: statsReducer.two_miss,
-        // total_points:,
+        total_points: totalPts,
         rebounds: statsReducer.rebounds,
         assists: statsReducer.assists,
         blocks: statsReducer.blocks,

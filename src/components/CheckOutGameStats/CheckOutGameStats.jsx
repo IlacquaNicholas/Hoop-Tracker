@@ -63,6 +63,7 @@ function CheckOutGameStats() {
                             <th>3PT MISSED</th>
                             <th>2PT MADE</th>
                             <th>2PT MISSED</th>
+                            <th>TOTAL POINTS</th>
                             <th>REBOUNDS</th>
                             <th>ASSISTS</th>
                             <th>BLOCKS</th>
@@ -77,6 +78,7 @@ function CheckOutGameStats() {
                             <td>{displayStatsReducer.three_missed}</td>
                             <td>{displayStatsReducer.two_made}</td>
                             <td>{displayStatsReducer.two_miss}</td>
+                            <td>{displayStatsReducer.total_points}</td>
                             <td>{displayStatsReducer.rebounds}</td>
                             <td>{displayStatsReducer.assists}</td>
                             <td>{displayStatsReducer.blocks}</td>
