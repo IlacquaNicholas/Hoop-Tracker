@@ -10,7 +10,15 @@ th, td, tr, thead {
   background-color: #FF9F1C;
   color: #2ec4b6;
   border: 3px solid #e71d36;
-  
+}
+textarea {
+  background-color: #FF9F1C;
+  font-size: 20px;
+  font-display: left;
+  color: #ffffff;
+}
+textarea[type=text]:focus {
+  background-color: #FF9F1C;
 }
 
 tr:nth-child(even){background-color: grey}

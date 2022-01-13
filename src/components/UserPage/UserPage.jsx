@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import PlayerDetail from '../PlayerDetail/PlayerDetail';
+import './UserPage.css';
 
 
 
@@ -38,7 +39,7 @@ function UserPage() {
   return (
     <>
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
+      <h2>Welcome, let the stat keeping begin {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <input type='text' placeholder='Add Team Name'
         value={teamNameInput} onChange={(event) => setTeamNameInput(event.target.value)} />

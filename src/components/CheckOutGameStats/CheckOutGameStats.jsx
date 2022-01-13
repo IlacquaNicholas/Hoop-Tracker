@@ -3,7 +3,6 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory} from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import CheckOutStatsDetail from '../CheckOutStatsDetail/CheckOutStatsDetail';
 import swal from 'sweetalert';
 import { Box } from '@mui/material';
 import Fab from '@mui/material/Fab';
@@ -42,6 +41,8 @@ function CheckOutGameStats() {
 
     return(
         <div>
+            <h1>Check out stats for a game!</h1>
+            <h2>Please choose the date of the game was played.</h2>
             <select value={gameId} onChange={chooseGame}>
                 <option disabled value= '0'>Select date of Game</option>
                 {getGamesReducer.map((game) => {
@@ -49,7 +50,6 @@ function CheckOutGameStats() {
                     <option key={game.id} value={game.id}>{game.date}</option>
                 )})}
             </select>
-            <h1>Lets see the stats for a game!</h1>
             <div>
                 <div>
                     <h3>Game #:{displayStatsReducer.game_id}</h3>
@@ -95,7 +95,8 @@ function CheckOutGameStats() {
                     </tbody>
                 </table>
                 <div>
-                    <h3>Comments on the Game:{displayStatsReducer.comments}</h3>
+                    <h3>Comments on the Game:</h3>
+                    <h3>{displayStatsReducer.comments}</h3>
                 </div>
             </div>
 

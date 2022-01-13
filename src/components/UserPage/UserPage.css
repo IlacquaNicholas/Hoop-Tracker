@@ -1,0 +1,16 @@
+input[type=text] {
+  width: 12%;
+  padding: 12px 20px;
+  font-family:'Roboto',sans-serif;
+  text-transform:uppercase;
+ font-size: 1.1rem;
+ font-weight:400;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #e71d36;
+  outline: none;
+}
+
+input[type=text]:focus {
+  background-color: #FF9F1C;
+}

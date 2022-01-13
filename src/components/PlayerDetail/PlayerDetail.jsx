@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
- import './PlayerDetail.css';
+import './PlayerDetail.css';
 
 function PlayerDetail ({player}){
 
