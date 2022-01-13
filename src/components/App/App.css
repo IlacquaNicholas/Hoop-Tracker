@@ -2,8 +2,8 @@ html,
 body,
 #react-root {
   height: 100%;
-  /* background: url(https://thumbs.dreamstime.com/b/basketball-court-arena-backgrounds-background-168018927.jpg);
-  background-size: 100%; */
+  background: url(https://thumbs.dreamstime.com/b/basketball-court-arena-backgrounds-background-168018927.jpg);
+  background-size: 100%;
 }
 
 body {

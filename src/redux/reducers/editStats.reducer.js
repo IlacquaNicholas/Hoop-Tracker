@@ -34,6 +34,9 @@ const editStatsReducer = (state={}, action)=>{
             return { ...state, blocks: action.payload }
         case 'SET_STEALS':
             return { ...state, steals: action.payload }
+        case 'SET_COMMENTS':
+            return { ...state, comments: action.payload }
+
             
     default:
         return state;

@@ -2,6 +2,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
 import TextField from '@mui/material/TextField'
+import './EditStats.css';
 import Box from '@mui/material/Box';
 
 import swal from 'sweetalert';
@@ -94,9 +95,15 @@ function EditStats(){
             payload: e.target.value
         })
     }
+    const handleComments = (e) => {
+        dispatch({
+            type: 'SET_COMMENTS',
+            payload: e.target.value
+        })
+    }
 
     return(
-        <div>
+        <div className="editInputs">
             <h2>Edit Stats:</h2>
             <form>
                 <TextField
@@ -162,6 +169,14 @@ function EditStats(){
                     helperText="Edit steals"
                     value={statsToEdit.steals}
                     onChange={handleSteals}
+                />
+                <h2>Edit Comments:</h2>
+                <textarea
+                    aria-label="empty textarea"
+                    value={statsToEdit.comments}
+                    placeholder="Comments about the game"
+                    onChange={handleComments}
+                    style={{ width: 200 }}
                 />
             </form>
                 <button onClick={handleUpdateSubmit}>Update</button>

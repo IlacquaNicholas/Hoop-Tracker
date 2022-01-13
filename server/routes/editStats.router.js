@@ -14,8 +14,11 @@ router.get('/:id', (req, res)=>{
         "stats"."rebounds",
         "stats"."assists",
         "stats"."blocks",
-        "stats"."steals" 
+        "stats"."steals",
+        "game"."comments"
     FROM "stats"
+        JOIN "game"
+            ON "stats"."game_id"="game"."id"
         WHERE "game_id"=$1;
     `;
     const sqlValues = [
@@ -60,8 +63,19 @@ router.put('/:id', (req, res) => {
     ]
     pool.query(sqlText, sqlValues)
         .then((dbRes) => {
-            res.sendStatus(200)
-        })
+    const sqlText2 = `
+    UPDATE "game"
+    SET
+        "comments"=$1 
+    WHERE "id" = $2
+    `;
+    const sqlValues2 = [
+        req.body.comments,
+        req.params.id
+    ]
+            pool.query(sqlText2, sqlValues2 )
+        res.sendStatus(200)
+    })
         .catch((dbErr) => {
             console.log('In Put Error', dbErr);
             res.sendStatus(500)

@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import { Box } from '@mui/material';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
+import'./CheckOutGameStats.css';
 
 
 function CheckOutGameStats() {
@@ -51,8 +52,8 @@ function CheckOutGameStats() {
             <h1>Lets see the stats for a game!</h1>
             <div>
                 <div>
-                    <p>Game #:{displayStatsReducer.game_id}</p>
-                    <p>Court: {displayStatsReducer.name}</p>
+                    <h3>Game #:{displayStatsReducer.game_id}</h3>
+                    <h3>Court: {displayStatsReducer.name}</h3>
                 </div>
                 <table>
                     <thead>
