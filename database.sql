@@ -44,31 +44,3 @@ INSERT INTO "court" ("name")
 VALUES ('RV Middle School Gym 1'),
 ('RV Middle School Gym 2'),
 ('C.P. West'),('C.P. East')
-
-
-
-
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'threeMade', headerName: '3pt Made', width: 130 },
-    { field: 'threeMissed', headerName: '3pt Missed', width: 130 },
-  
-  ];
-
-  const rows = [
-    { id: 1, firstName: 'Nick', threeMade: 3, threeMissed: 4},
-    { id: 2, firstName: 'Jared', threeMade: 3, threeMissed:5 },
-    { id: 3, firstName: 'Mike', threeMade: 3, threeMissed: 5 },
-  ];
-
-    return (
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
-      </div>
