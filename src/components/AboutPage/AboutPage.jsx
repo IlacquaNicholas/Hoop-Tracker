@@ -1,5 +1,6 @@
 import React from 'react';
 import'./AboutPage.css'
+import Team from '../Img/Ateam.jpg'
 // This is one of our simplest components
 // It doesn't have local state,
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -32,6 +33,9 @@ function AboutPage() {
           <li>A leader board</li>
           <li>Find a more efficient way for the stat keeper.</li>
         </ul>
+
+        <h1>The A-TEAM</h1>
+        <img src={Team}/>
 
 
 
