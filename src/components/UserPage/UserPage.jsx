@@ -40,7 +40,7 @@ function UserPage() {
     <>
     <div className="container">
       <h2>Welcome, let the stat keeping begin {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+      {/* <p>Your ID is: {user.id}</p> */}
       <input className="input" type='text' placeholder='Add Team Name'
         value={teamNameInput} onChange={(event) => setTeamNameInput(event.target.value)} />
         <input className="input" type='text' placeholder='Add Player Name'
